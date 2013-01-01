@@ -13,7 +13,7 @@ namespace Advent.MediaCenter.Theme.Default
         {
             get
             {
-                return 10;
+                return 23;
             }
         }
 

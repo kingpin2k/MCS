@@ -238,7 +238,6 @@ namespace Advent.MediaCenter.StartMenu.Fiji
             if (flag1)
                 return;
             bool flag2 = this.app == null && this.appId != null;
-            //TODO original (object)(bool)(!flag2 ? 1 : 0)
             this.SetValue(FijiMenuStrip.CanSetEnabledPropertyKey,!flag2);
             this.SetValue(FijiMenuStrip.CanDeletePropertyKey, flag2 );
         }

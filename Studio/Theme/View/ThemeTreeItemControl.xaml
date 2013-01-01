@@ -2,7 +2,7 @@
     <UserControl.Resources>
         <btdc:BooleanToDoubleConverter x:Key="IsDefaultToOpacity" TrueValue="0.5" FalseValue="1" />
     </UserControl.Resources>
-    <Grid>
+    <Grid >
         <Border Style="{StaticResource DropHighlightStyle}" AllowDrop="True" p5:DragDrop.DragMouseButton="Left" p5:DragDrop.AllowEnhancedDrop="True" p5:DragDrop.DropDescription="Copy to {0}" p5:DragDrop.DropDescriptionInsert="{Binding Name}" DragEnter="ThemeItemViewModel_DragEnter" Drop="ThemeItemViewModel_Drop" p5:DragDrop.Drag="ThemeItemViewModel" xmlns:p5="clr-namespace:Advent.Common.UI;assembly=Advent.Common">
             <TextBlock Name="themeItemName" Text="{Binding Name}" TextBlock.FontWeight="{Binding Path=ThemeItem.IsDirty, Converter={StaticResource BooleanToFontWeight}}" Opacity="{Binding Path=IsDefault, Converter={StaticResource IsDefaultToOpacity}}" />
         </Border>

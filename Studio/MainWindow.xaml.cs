@@ -260,26 +260,6 @@ namespace Advent.VmcStudio
                 this.gamesDropDown.Command.Execute(frameworkElement.DataContext);
             }
         }
-        
-        [EditorBrowsable(EditorBrowsableState.Never), DebuggerNonUserCode]
-        void IStyleConnector.Connect(int connectionId, object target)
-        {
-            switch (connectionId)
-            {
-                case 8:
-                    {
-                        EventSetter eventSetter = new EventSetter();
-                        eventSetter.Event = MenuItem.ClickEvent;
-                        eventSetter.Handler = new RoutedEventHandler(this.GameMouseLeftButtonDown);
-                        ((Style)target).Setters.Add(eventSetter);
-                        return;
-                    }
-                case 9:
-                    ((System.Windows.Shapes.Path)target).MouseLeftButtonDown += new MouseButtonEventHandler(this.TabItemCloseButton_MouseLeftButtonDown);
-                    return;
-                default:
-                    return;
-            }
-        }
+
     }
 }

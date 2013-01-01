@@ -21,7 +21,8 @@ namespace Advent.MediaCenter.Theme.Default
         {
             get
             {
-                return 10;
+                //Pretty sure all of the mcml resources live in 23
+                return 23;
             }
         }
 

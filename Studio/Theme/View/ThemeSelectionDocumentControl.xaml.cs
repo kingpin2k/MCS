@@ -179,12 +179,14 @@ namespace Advent.VmcStudio.Theme.View
         }
         private void ThemeMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ClickCount == 2)
+            if (e.ClickCount == 2 && e.ChangedButton== MouseButton.Left)
             {
                 ApplicationCommands.Open.Execute(null, (IInputElement)sender);
             }
         }
 
+        /*
+         * This needs fixing
         void IStyleConnector.Connect(int connectionId, object target)
         {
             if (connectionId != 1)
@@ -194,5 +196,6 @@ namespace Advent.VmcStudio.Theme.View
             ((Grid)target).AddHandler(Advent.Common.UI.DragDrop.DragEvent, new BeginDragEventHandler(this.HandleThemeDrag));
             ((Grid)target).MouseLeftButtonDown += new MouseButtonEventHandler(this.ThemeMouseLeftButtonDown);
         }
+         * */
     }
 }

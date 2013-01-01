@@ -28,8 +28,7 @@
                             </Grid.OpacityMask>
                             <ScrollContentPresenter Content="{TemplateBinding ContentControl.Content}" Margin="{TemplateBinding FrameworkElement.Margin}" />
                         </Grid>
-                        <!-- TODO removed attr: x:ConnectionId="3" -->
-                        <RepeatButton Name="UpButton" Command="ScrollBar.LineUpCommand" Visibility="{TemplateBinding ScrollViewer.ComputedVerticalScrollBarVisibility}" VerticalAlignment="Top">
+                        <RepeatButton Name="UpButton" Command="ScrollBar.LineUpCommand" Visibility="{TemplateBinding ScrollViewer.ComputedVerticalScrollBarVisibility}" VerticalAlignment="Top" DragEnter="RepeatButtonDragEnter" DragLeave="RepeatButtonDragLeave" Drop="RepeatButtonDragLeave">
                             <RepeatButton.Template>
                                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                                     <Image Name="UpImage" Height="40" />
@@ -44,8 +43,7 @@
                                 </ControlTemplate>
                             </RepeatButton.Template>
                         </RepeatButton>
-                        <!-- TODO removed attr: x:ConnectionId="4" -->
-                        <RepeatButton Name="DownButton" Command="ScrollBar.LineDownCommand" Visibility="{TemplateBinding ScrollViewer.ComputedVerticalScrollBarVisibility}" VerticalAlignment="Bottom">
+                        <RepeatButton Name="DownButton" Command="ScrollBar.LineDownCommand" Visibility="{TemplateBinding ScrollViewer.ComputedVerticalScrollBarVisibility}" VerticalAlignment="Bottom" DragEnter="RepeatButtonDragEnter" DragLeave="RepeatButtonDragLeave" Drop="RepeatButtonDragLeave">
                             <RepeatButton.Template>
                                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                                     <Image Name="DownImage" Height="40" />

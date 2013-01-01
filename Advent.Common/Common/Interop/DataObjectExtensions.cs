@@ -486,9 +486,6 @@ namespace Advent.Common.Interop
                 
                 STGMEDIUM medium;
                 
-                //Todo
-                //original
-                //dataObject1.GetData(ref formatetc, out medium);
                 ((System.Runtime.InteropServices.ComTypes.IDataObject)dataObject1).GetData(ref formatetc, out medium);
                 
                 try

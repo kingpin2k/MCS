@@ -24,7 +24,6 @@ namespace Advent.VmcStudio.Converters
                 throw new ArgumentNullException("value");
             object[] objArray = new object[targetTypes.Length];
             for (int index = 0; index < targetTypes.Length; ++index)
-                //TODO bool or int?
                 objArray[index] = (object)((bool)value);
             return objArray;
         }

@@ -151,13 +151,11 @@ namespace Advent.VmcStudio
 
         private void ExclusiveOperation_Completed(object sender, EventArgs e)
         {
-            //Todo Was Delegate, Now Action
             this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() => this.IsExclusiveOperationInProgress = false));
         }
 
         private void ExclusiveOperation_Progress(object sender, ProgressEventArgs e)
         {
-            //Todo Was Delegate, Now Action
             this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>
             {
                 IProgressEnabledOperation local_0 = (IProgressEnabledOperation)sender;

@@ -82,7 +82,6 @@ namespace Advent.MediaCenter.StartMenu.OEM
             }
             protected set
             {
-                //TODO original (object)(bool)(value ? 1 : 0)
                 this.SetValue(MediaCenterRegistryObject.IsDirtyPropertyKey, value );
             }
         }

@@ -74,7 +74,6 @@ namespace Advent.MediaCenter.StartMenu
 
         private static void OemQuickLinkChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            //TODO original (object)(bool)(value ? 1 : 0)
             sender.SetValue(XmlQuickLink.IsValidPropertyKey, (object)(args.NewValue != null ? true : false));
             PartnerQuickLinkBase partnerQuickLinkBase = (PartnerQuickLinkBase)sender;
             partnerQuickLinkBase.OnQuickLinkChanged((OemQuickLink)args.OldValue, (OemQuickLink)args.NewValue);

@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="{DataTemplateKey {x:Type model:ThemeSummary}}" DataType="{x:Type model:ThemeSummary}">
             <!-- TODO removing this attr: x:ConnectionId="1" -->
-            <Grid ui:DragDrop.DragMouseButton="Left" >
+            <Grid ui:DragDrop.DragMouseButton="Left" ui:DragDrop.Drag="HandleThemeDrag" Mouse.MouseDown="ThemeMouseLeftButtonDown" >
                 <StackPanel Margin="4">
                     <ContentControl Style="{StaticResource GlassBorder}" Width="200" Height="117">
                         <Image Source="{Binding Screenshot}" />

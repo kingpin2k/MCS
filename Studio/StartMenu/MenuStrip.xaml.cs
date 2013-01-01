@@ -14,6 +14,9 @@ using System.Windows.Media;
 using System.Windows.Threading;
 namespace Advent.VmcStudio.StartMenu
 {
+    /// <summary>
+    /// The MenuStrip UserControl is used for creating the tiles in the Media Center Menu
+    /// </summary>
     public partial class MenuStrip : UserControl, IComponentConnector, IStyleConnector
     {
         private static readonly DependencyPropertyKey DefaultLinkPropertyKey = DependencyProperty.RegisterReadOnly("DefaultLink", typeof(IQuickLink), typeof(MenuStrip), new PropertyMetadata(null));
@@ -72,16 +75,7 @@ namespace Advent.VmcStudio.StartMenu
         public static readonly DependencyProperty DropTargetVisibilityProperty = DependencyProperty.Register("DropTargetVisibility", typeof(Visibility), typeof(MenuStrip), new PropertyMetadata(Visibility.Hidden));
         private bool m_removeDragLink;
         private DispatcherTimer timer;
-        /*
-        internal MenuStrip m_strip;
-        internal Button m_moveUpButton;
-        internal CheckBox m_isEnabledCheck;
-        internal ImageButton m_deleteButton;
-        internal EditableTextBlock m_titleText;
-        internal Button m_moveDownButton;
-        internal ItemsControl m_linkList;
-        private bool _contentLoaded;
-         * */
+        
 
         public bool CanMoveUp
         {
@@ -372,26 +366,6 @@ namespace Advent.VmcStudio.StartMenu
         {
             this.StartMenu.StartMenuManager.Strips.Remove(this.Strip);
         }
-        
-        
-        [EditorBrowsable(EditorBrowsableState.Never), DebuggerNonUserCode]
-        void IStyleConnector.Connect(int connectionId, object target)
-        {
-            switch (connectionId)
-            {
-                case 8:
-                    ((RepeatButton)target).DragEnter += new DragEventHandler(this.RepeatButtonDragEnter);
-                    ((RepeatButton)target).DragLeave += new DragEventHandler(this.RepeatButtonDragLeave);
-                    ((RepeatButton)target).Drop += new DragEventHandler(this.RepeatButtonDragLeave);
-                    return;
-                case 9:
-                    ((RepeatButton)target).DragEnter += new DragEventHandler(this.RepeatButtonDragEnter);
-                    ((RepeatButton)target).DragLeave += new DragEventHandler(this.RepeatButtonDragLeave);
-                    ((RepeatButton)target).Drop += new DragEventHandler(this.RepeatButtonDragLeave);
-                    return;
-                default:
-                    return;
-            }
-        }
+
     }
 }

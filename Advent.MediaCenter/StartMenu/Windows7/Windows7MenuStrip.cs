@@ -185,7 +185,6 @@ namespace Advent.MediaCenter.StartMenu.Windows7
             if (flag1)
                 return;
             bool flag2 = this.m_app == null && this.m_appId != null;
-            //TODO Original (object)(bool)(!flag2 ? true : false)
             this.SetValue(Windows7MenuStrip.CanSetEnabledPropertyKey, (object)(!flag2 ? true : false));
             this.SetValue(Windows7MenuStrip.CanDeletePropertyKey, (object)(flag2 ? true : false));
         }

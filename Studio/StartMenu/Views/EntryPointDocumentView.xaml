@@ -184,7 +184,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         
-                                        <Button Name="addDvdButton" Visibility="Collapsed" Margin="4">
+                                        <Button Name="addDvdButton" Visibility="Collapsed" Margin="4" Click="AddDvdButtonClick" >
                                             <TextBlock Margin="2" Text="{Binding Path=Name, Converter={StaticResource StringFormatter}, ConverterParameter=Play DVD ({0})}" />
                                         </Button>
                                         <DataTemplate.Triggers>

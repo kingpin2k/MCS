@@ -19,7 +19,8 @@
             </StackPanel>
             <TreeView Name="themesTree" ItemsSource="{Binding Theme.Children}">
                 <TreeView.ItemContainerStyle>
-                    <Style TargetType="{x:Type TreeViewItem}" BasedOn="{x:Type TreeViewItem}">
+                    <!-- TODO Do I need BasedOn="{x:Type TreeViewItem}" ? -->
+                    <Style TargetType="{x:Type TreeViewItem}" >
                         <Setter Property="TreeViewItem.IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
                         <Setter Property="TreeViewItem.IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
                         <Setter Property="UIElement.Visibility" Value="{Binding Visibility, Mode=TwoWay}" />

@@ -60,14 +60,6 @@ namespace Advent.VmcStudio.StartMenu.Views
             }
         }
 
-        void IStyleConnector.Connect(int connectionId, object target)
-        {
-            if (connectionId == 0x10)
-            {
-                ((System.Windows.Controls.Button)target).Click += new RoutedEventHandler(this.AddDvdButtonClick);
-            }
-        }
-
 
         private ImageSource BrowseForImage()
         {
@@ -306,6 +298,5 @@ namespace Advent.VmcStudio.StartMenu.Views
         }
 
     }
-
 
 }

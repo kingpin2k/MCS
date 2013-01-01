@@ -96,7 +96,6 @@ namespace Advent.MediaCenter.StartMenu.OEM
             }
             set
             {
-                //TODO original (object)(bool)(value ? 1 : 0)
                 this.SetValue(Advent.MediaCenter.StartMenu.OEM.Application.IsEnabledProperty, value);
             }
         }

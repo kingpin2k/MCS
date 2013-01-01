@@ -135,25 +135,6 @@ namespace Advent.VmcStudio.StartMenu
             }
         }
 
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DebuggerNonUserCode]
-        void IStyleConnector.Connect(int connectionId, object target)
-        {
-            switch (connectionId)
-            {
-                case 3:
-                    ((UIElement)target).DragEnter += new DragEventHandler(this.RepeatButtonDragEnter);
-                    ((UIElement)target).DragLeave += new DragEventHandler(this.RepeatButtonDragLeave);
-                    ((UIElement)target).Drop += new DragEventHandler(this.RepeatButtonDragLeave);
-                    break;
-                case 4:
-                    ((UIElement)target).DragEnter += new DragEventHandler(this.RepeatButtonDragEnter);
-                    ((UIElement)target).DragLeave += new DragEventHandler(this.RepeatButtonDragLeave);
-                    ((UIElement)target).Drop += new DragEventHandler(this.RepeatButtonDragLeave);
-                    break;
-            }
-        }
     }
 
 

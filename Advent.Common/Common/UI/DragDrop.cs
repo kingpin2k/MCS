@@ -98,8 +98,6 @@ namespace Advent.Common.UI
 
         public static void SetAllowEnhancedDrop(DependencyObject element, bool value)
         {
-            //TODO Not sure if this is supposed to be bool or int, whatever...
-            //original (object)(bool)(value ? 1 : 0)
             element.SetValue(Advent.Common.UI.DragDrop.AllowEnhancedDropProperty, value);
         }
 

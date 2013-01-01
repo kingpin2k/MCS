@@ -80,7 +80,6 @@ namespace Advent.MediaCenter.StartMenu.OEM
             }
             set
             {
-                //TODO original (object)(bool)(value ? 1 : 0)
                 this.SetValue(OemMenuStrip.IsEnabledProperty, value);
             }
         }

@@ -8,8 +8,6 @@ namespace Advent.Common.Interop
     [ComImport]
     public class DragDropHelper
     {
-        //TODO extern added
-        //[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        //public extern DragDropHelper();
+        
     }
 }

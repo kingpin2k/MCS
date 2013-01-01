@@ -82,7 +82,6 @@ namespace Advent.MediaCenter.StartMenu
                     }
                 }
             }
-            //TODO original (object)(bool)(value ? 1 : 0)
             this.SetValue(XmlQuickLink.IsValidPropertyKey, (object)(string.IsNullOrEmpty(this.Title) ? false : (this.Image != null ? true : false)));
         }
 

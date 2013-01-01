@@ -27,7 +27,6 @@ namespace Advent.VmcStudio.StartMenu
 
         public static void SetIsAnimationEnabled(DependencyObject dependencyObject, bool enabled)
         {
-            //TODO bool or int?
             dependencyObject.SetValue(PanelLayoutAnimator.IsAnimationEnabledProperty, enabled);
         }
 

@@ -23,7 +23,7 @@ namespace Advent.MediaCenter.Theme
         {
             get
             {
-                return 10;
+                return 23;
             }
         }
 

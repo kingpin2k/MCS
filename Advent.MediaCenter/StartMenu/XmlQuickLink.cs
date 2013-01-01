@@ -84,7 +84,6 @@ namespace Advent.MediaCenter.StartMenu
             }
             set
             {
-                //TODO original (object)(bool)(value ? 1 : 0)
                 this.SetValue(XmlQuickLink.IsEnabledProperty, value);
             }
         }

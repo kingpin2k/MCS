@@ -25,7 +25,7 @@
             <Setter Property="ui:DragDrop.DropDescription" Value="Move to {0}" />
             <Setter Property="ui:DragDrop.DropDescriptionInsert" Value="{Binding ElementName=m_strip, Path=Strip.Title}" />
             <!--
-            Todo you need to look into this event setter
+            Todo you need to look into this event setter, but I think it should be good
             
             <EventSetter sm:QuickLinkTargetImage.Drop="QuickLinkTargetImage_Drop" />
             -->
@@ -226,11 +226,11 @@
                                 </StackPanel.OpacityMask>
                                 <ScrollContentPresenter Content="{TemplateBinding ContentControl.Content}" Margin="{TemplateBinding FrameworkElement.Margin}" />
                             </StackPanel>
-                            <!-- TODO bad attr: ConnectionId="8"  -->
-                            <RepeatButton Name="leftButton" Command="ScrollBar.LineLeftCommand" Visibility="{TemplateBinding ScrollViewer.ComputedHorizontalScrollBarVisibility}" HorizontalAlignment="Left">
+                            <RepeatButton Name="leftButton" Command="ScrollBar.LineLeftCommand" Visibility="{TemplateBinding ScrollViewer.ComputedHorizontalScrollBarVisibility}" HorizontalAlignment="Left" DragDrop.DragEnter="RepeatButtonDragEnter" DragDrop.DragLeave="RepeatButtonDragLeave" DragDrop.Drop="QuickLinkTargetImage_Drop">
                                 <RepeatButton.Template>
                                     <ControlTemplate TargetType="{x:Type RepeatButton}">
                                         <Image Name="LeftImage" Height="40" />
+              
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="ButtonBase.IsPressed" Value="True">
                                                 <Setter TargetName="LeftImage" Value="{Binding Source={x:Static l:VmcStudioUtil.Application}, Path=CommonResources.ChevronLeftPressedImage}" Property="Image.Source" />
@@ -242,8 +242,7 @@
                                     </ControlTemplate>
                                 </RepeatButton.Template>
                             </RepeatButton>
-                            <!-- TODO bad attr: ConnectionId="9"  -->
-                            <RepeatButton Name="rightButton" Command="ScrollBar.LineRightCommand" Visibility="{TemplateBinding ScrollViewer.ComputedHorizontalScrollBarVisibility}" HorizontalAlignment="Right">
+                            <RepeatButton Name="rightButton" Command="ScrollBar.LineRightCommand" Visibility="{TemplateBinding ScrollViewer.ComputedHorizontalScrollBarVisibility}" HorizontalAlignment="Right" DragDrop.DragEnter="RepeatButtonDragEnter" DragDrop.DragLeave="RepeatButtonDragLeave" DragDrop.Drop="QuickLinkTargetImage_Drop">
                                 <RepeatButton.Template>
                                     <ControlTemplate TargetType="{x:Type RepeatButton}">
                                         <Image Name="RightImage" Height="40" />

@@ -24,7 +24,6 @@ namespace Advent.VmcStudio.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //TODO bool or int?
             return (object)((Visibility)value == this.TrueValue);
         }
     }

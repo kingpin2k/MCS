@@ -8,13 +8,11 @@ namespace Advent.VmcStudio.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //TODO bool or int?
             return (object)!(bool)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //TODO bool or int?
             return (object)!(bool)value;
         }
     }
