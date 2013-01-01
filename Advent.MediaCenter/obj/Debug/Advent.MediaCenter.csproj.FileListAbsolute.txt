@@ -1,8 +1,0 @@
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.MediaCenter\bin\Debug\Advent.MediaCenter.dll
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.MediaCenter\bin\Debug\Advent.MediaCenter.pdb
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.MediaCenter\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.MediaCenter\obj\Debug\Advent.MediaCenter.Resources.resources
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.MediaCenter\obj\Debug\GenerateResource.read.1.tlog
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.MediaCenter\obj\Debug\GenerateResource.write.1.tlog
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.MediaCenter\obj\Debug\Advent.MediaCenter.dll
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.MediaCenter\obj\Debug\Advent.MediaCenter.pdb

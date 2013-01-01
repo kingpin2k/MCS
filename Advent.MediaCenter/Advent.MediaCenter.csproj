@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -154,6 +155,7 @@
     <ProjectReference Include="..\Advent.Common\Advent.Common.csproj">
       <Project>{4C1A8162-4006-45FF-A715-39A671D31AB9}</Project>
       <Name>Advent.Common</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

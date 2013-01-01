@@ -1,4 +1,0 @@
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Studio_MarkupCompile.cache
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Studio.exe
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Studio.pdb

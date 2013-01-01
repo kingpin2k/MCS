@@ -411,18 +411,23 @@
     <ProjectReference Include="..\Advent.Common.GAC\Advent.Common.GAC.csproj">
       <Project>{E52BD1EB-60BB-4EE6-822A-8F5162C2166A}</Project>
       <Name>Advent.Common.GAC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Advent.MediaCenter\Advent.MediaCenter.csproj">
-      <Project>{402BEE1F-F5E5-471D-80F4-EFBB9CDB1713}</Project>
-      <Name>Advent.MediaCenter</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Advent.VmcExecute\Advent.VmcExecute.csproj">
-      <Project>{659AF789-E7C1-4A13-B598-0B6C2D81E012}</Project>
-      <Name>Advent.VmcExecute</Name>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Advent.Common\Advent.Common.csproj">
       <Project>{4C1A8162-4006-45FF-A715-39A671D31AB9}</Project>
       <Name>Advent.Common</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Advent.MediaCenter\Advent.MediaCenter.csproj">
+      <Project>{402BEE1F-F5E5-471D-80F4-EFBB9CDB1713}</Project>
+      <Name>Advent.MediaCenter</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Advent.VmcExecute\Advent.VmcExecute.csproj">
+      <Project>{659AF789-E7C1-4A13-B598-0B6C2D81E012}</Project>
+      <Name>Advent.VmcExecute</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

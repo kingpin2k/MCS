@@ -1,8 +1,0 @@
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.VmcExecute\bin\Debug\Advent.VmcExecute.dll
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.VmcExecute\bin\Debug\Advent.VmcExecute.pdb
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.VmcExecute\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.VmcExecute\obj\Debug\Advent.VmcExecute.Resources.resources
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.VmcExecute\obj\Debug\GenerateResource.read.1.tlog
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.VmcExecute\obj\Debug\GenerateResource.write.1.tlog
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.VmcExecute\obj\Debug\Advent.VmcExecute.dll
-C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.VmcExecute\obj\Debug\Advent.VmcExecute.pdb
