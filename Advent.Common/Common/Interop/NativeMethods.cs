@@ -465,8 +465,11 @@ namespace Advent.Common.Interop
         [DllImport("user32.dll")]
         public static extern int SendMessage(int hWnd, uint Msg, int wParam, int lParam);
 
-        [DllImport("gdi32")]
-        public static extern int AddFontResource(string lpFileName);
+        [DllImport("gdi32.dll", EntryPoint = "AddFontResourceW", SetLastError = true)]
+        public static extern int AddFontResource([In][MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
+
+        [DllImport("gdi32.dll", EntryPoint = "RemoveFontResourceW", SetLastError = true)]
+        public static extern int RemoveFontResource([In][MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
 
         [DllImport("shfolder.dll", CharSet = CharSet.Auto)]
         public static extern int SHGetFolderPath(IntPtr hwndOwner, int nFolder, IntPtr hToken, int dwFlags, StringBuilder lpszPath);

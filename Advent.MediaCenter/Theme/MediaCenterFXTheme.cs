@@ -223,7 +223,7 @@ namespace Advent.MediaCenter.Theme
             throw new InvalidOperationException("MediaCenterFX themes cannot be saved.");
         }
 
-        protected override IEnumerable<string> LoadFontFiles()
+        protected override List<string> LoadFontFiles()
         {
             List<string> list = new List<string>();
             foreach (ZipEntry entry in this.fontEntries)
@@ -234,7 +234,7 @@ namespace Advent.MediaCenter.Theme
                     fileStream.Write(buffer, 0, buffer.Length);
                 list.Add(path);
             }
-            return (IEnumerable<string>)list;
+            return list;
         }
 
         private FontOverride GetFontOverride(string fontFace, string fontSize)

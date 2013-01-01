@@ -282,7 +282,7 @@ namespace Advent.VmcStudio.StartMenu
         private List<string> GetTasks(string folder)
         {
             List<string> list = new List<string>();
-            try
+            if (Directory.Exists(folder))
             {
                 for (int index = 0; index < 5; ++index)
                 {
@@ -290,9 +290,6 @@ namespace Advent.VmcStudio.StartMenu
                     if (files.Length > 0)
                         list.Add(files[0]);
                 }
-            }
-            catch (DirectoryNotFoundException)
-            {
             }
             return list;
         }

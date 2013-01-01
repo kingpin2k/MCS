@@ -17,8 +17,14 @@ namespace Advent.Common.Interop
             IntPtr phbm = IntPtr.Zero;
             Guid riid = new Guid("43826d1e-e718-42ee-bc55-a1e261c37bfe");
             IBindCtx pbc = (IBindCtx)null;
+            
+            // This is causing some sort of memory corruption...
+            //    pbc = (IBindCtx)new Shell.CreateBindContext();
             if (!File.Exists(filename))
-                pbc = (IBindCtx)new Shell.CreateBindContext();
+                return (ImageSource)null;
+
+            
+            
             IShellItem ppv;
             Advent.Common.Interop.NativeMethods.SHCreateItemFromParsingName(filename, pbc, riid, out ppv);
             if (ppv == null)

@@ -155,7 +155,7 @@
     <ProjectReference Include="..\Advent.Common\Advent.Common.csproj">
       <Project>{4C1A8162-4006-45FF-A715-39A671D31AB9}</Project>
       <Name>Advent.Common</Name>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

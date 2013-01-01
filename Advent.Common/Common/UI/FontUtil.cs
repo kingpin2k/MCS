@@ -23,7 +23,7 @@ namespace Advent.Common.UI
             }
         }
 
-        public static int InstallFonts(string file)
+        public static int InstallFont(string file)
         {
             string str = Path.Combine(FontUtil.FontsPath, Path.GetFileName(file));
             if (File.Exists(str))
@@ -32,6 +32,15 @@ namespace Advent.Common.UI
             int num = NativeMethods.AddFontResource(str);
             NativeMethods.SendMessage((int)ushort.MaxValue, 29U, 0, 0);
             NativeMethods.WriteProfileString("fonts", Path.GetFileName(file) + " (TrueType)", str);
+            return num;
+        }
+
+        public static int RemoveFont(string file)
+        {
+            string str = Path.Combine(FontUtil.FontsPath, Path.GetFileName(file));
+            if (!File.Exists(str))
+                return 0;
+            int num = NativeMethods.RemoveFontResource(str);
             return num;
         }
 

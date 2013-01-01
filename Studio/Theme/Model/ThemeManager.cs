@@ -123,7 +123,9 @@ namespace Advent.VmcStudio.Theme.Model
                 {
                     try
                     {
-                        this.themes.Add(ThemeSummary.Load(path));
+                        var theme_summary = ThemeSummary.Load(path);
+                        if(theme_summary!=null)
+                            this.themes.Add(theme_summary);
                     }
                     catch (FileNotFoundException)
                     {

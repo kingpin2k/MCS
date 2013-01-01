@@ -46,11 +46,11 @@ namespace Advent.VmcStudio
                 WindowsPrincipal principal = new WindowsPrincipal(user);
                 isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
             }
-            catch (UnauthorizedAccessException ex)
+            catch (UnauthorizedAccessException)
             {
                 isAdmin = false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 isAdmin = false;
             }
@@ -162,7 +162,9 @@ namespace Advent.VmcStudio
         {
             get
             {
-                return Shell.GenerateThumbnail(".exe");
+                //Find out who I am, get my icon (maybe), I'm pretty sure there is a better way to do this
+                //like get the ico from resources or something...
+                return Shell.GenerateThumbnail(Environment.GetCommandLineArgs()[0]);
             }
         }
 
@@ -172,22 +174,7 @@ namespace Advent.VmcStudio
 
         public static void LaunchDonate()
         {
-            try
-            {
-                Mouse.OverrideCursor = System.Windows.Input.Cursors.AppStarting;
-                Process.Start(new ProcessStartInfo()
-                {
-                    UseShellExecute = true,
-                    FileName = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=advent%40live%2ecom%2eau&item_name=MC%20Menu%20Mender&no_shipping=1&cn=Comments&tax=0&currency_code=AUD&lc=AU&bn=PP%2dDonationsBF&charset=UTF%2d8"
-                });
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                Mouse.OverrideCursor = (System.Windows.Input.Cursor)null;
-            }
+            //No longer alive...
         }
 
         public static string GetImageFile()

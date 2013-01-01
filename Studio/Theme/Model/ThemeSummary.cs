@@ -9,6 +9,7 @@ using System.Xml.Serialization;
 
 namespace Advent.VmcStudio.Theme.Model
 {
+    [Serializable]
     public class ThemeSummary : NotifyPropertyChangedBase
     {
         private BitmapSource screenshot;
@@ -89,7 +90,10 @@ namespace Advent.VmcStudio.Theme.Model
 
         public static ThemeSummary Load(string path)
         {
-            ThemeSummary themeSummary = (ThemeSummary)new XmlSerializer(typeof(ThemeSummary)).Deserialize((Stream)File.Open(ThemeSummary.GetSummaryFilePath(path), FileMode.Open));
+            String summary_file = ThemeSummary.GetSummaryFilePath(path);
+            if(!File.Exists(summary_file))
+                return null;
+            ThemeSummary themeSummary = (ThemeSummary)new XmlSerializer(typeof(ThemeSummary)).Deserialize((Stream)File.Open(summary_file, FileMode.Open));
             themeSummary.BasePath = path;
             return themeSummary;
         }

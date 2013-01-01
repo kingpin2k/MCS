@@ -36,7 +36,7 @@ namespace Advent.MediaCenter.Theme
         private string comments;
         private BitmapSource mainScreenshot;
         private List<FontFamily> fonts;
-        private IEnumerable<string> fontFiles;
+        private List<string> fontFiles;
         private FontsThemeItem fontsItem;
         private ColorsThemeItem colorsItem;
         private bool isInitialised;
@@ -171,7 +171,7 @@ namespace Advent.MediaCenter.Theme
             }
         }
 
-        public ICollection<FontFamily> Fonts
+        public List<FontFamily> Fonts
         {
             get
             {
@@ -179,20 +179,20 @@ namespace Advent.MediaCenter.Theme
                 {
                     this.fonts = new List<FontFamily>();
                     foreach (string location in this.FontFiles)
-                        this.fonts.AddRange((IEnumerable<FontFamily>)System.Windows.Media.Fonts.GetFontFamilies(location));
+                        this.fonts.AddRange(System.Windows.Media.Fonts.GetFontFamilies(location));
                 }
-                return (ICollection<FontFamily>)this.fonts;
+                return this.fonts;
             }
         }
 
         public abstract bool CanSave { get; }
 
-        protected internal IEnumerable<string> FontFiles
+        protected internal List<string> FontFiles
         {
             get
             {
                 if (this.fontFiles == null)
-                    this.fontFiles = this.LoadFontFiles() ?? (IEnumerable<string>)new List<string>();
+                    this.fontFiles = this.LoadFontFiles() ?? new List<string>();
                 return this.fontFiles;
             }
             protected set
@@ -390,7 +390,7 @@ namespace Advent.MediaCenter.Theme
                 {
                     operation.OnProgress("Installing fonts...", 0);
                     foreach (string file in Enumerable.Distinct<string>(Enumerable.Select<FontFamily, string>(Enumerable.Where<FontFamily>((IEnumerable<FontFamily>)this.Fonts, (Func<FontFamily, bool>)(f => !Enumerable.Any<FontFamily>((IEnumerable<FontFamily>)System.Windows.Media.Fonts.SystemFontFamilies, (Func<FontFamily, bool>)(o => FontUtil.GetName(f) == FontUtil.GetName(o))))), (Func<FontFamily, string>)(o => FontUtil.GetFile(o)))))
-                        FontUtil.InstallFonts(file);
+                        FontUtil.InstallFont(file);
                 }
                 List<IThemeItem> list = Enumerable.ToList<IThemeItem>(Enumerable.Concat<IThemeItem>((IEnumerable<IThemeItem>)new List<IThemeItem>()
         {
@@ -422,7 +422,7 @@ namespace Advent.MediaCenter.Theme
 
         protected abstract void SaveInternal();
 
-        protected abstract IEnumerable<string> LoadFontFiles();
+        protected abstract List<string> LoadFontFiles();
 
         private static FontFamily FindFont(string font, IEnumerable<FontFamily> fonts)
         {

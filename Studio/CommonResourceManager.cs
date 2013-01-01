@@ -15,10 +15,10 @@ namespace Advent.VmcStudio
 {
     public class CommonResourceManager : NotifyPropertyChangedBase
     {
-        private readonly IDictionary<string, ImageSource> images;
+        private readonly Dictionary<string, ImageSource> images;
         private readonly VmcStudioApp app;
-        private IDictionary<string, FontFamily> fonts;
-        private IDictionary<string, Color> colors;
+        private Dictionary<string, FontFamily> fonts;
+        private Dictionary<string, Color> colors;
         private MediaCenterLibraryCache cache;
 
         public MediaCenterLibraryCache LibraryCache
@@ -256,7 +256,7 @@ namespace Advent.VmcStudio
         internal CommonResourceManager(VmcStudioApp app)
         {
             this.app = app;
-            this.images = (IDictionary<string, ImageSource>)new Dictionary<string, ImageSource>();
+            this.images = new Dictionary<string, ImageSource>();
             this.ResetResources();
             app.ThemeManager.ApplyingThemes += new EventHandler<ApplyThemesEventArgs>(this.ThemeManagerApplyingThemes);
         }
@@ -274,8 +274,8 @@ namespace Advent.VmcStudio
             if (this.cache == null)
                 this.cache = new MediaCenterLibraryCache();
             this.images.Clear();
-            this.colors = (IDictionary<string, Color>)null;
-            this.fonts = (IDictionary<string, FontFamily>)null;
+            this.colors = null;
+            this.fonts = null;
             foreach (MemberInfo memberInfo in this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
                 this.OnPropertyChanged(memberInfo.Name);
         }
@@ -311,19 +311,37 @@ namespace Advent.VmcStudio
         private Color GetColor(string colorName)
         {
             if (this.colors == null)
-                this.colors = (IDictionary<string, Color>)Enumerable.ToDictionary<ColorItem, string, Color>(ColorsThemeItem.GetColors(this.cache), (Func<ColorItem, string>)(o => o.Name), (Func<ColorItem, Color>)(o => o.Color));
+                this.colors = Enumerable.ToDictionary<ColorItem, string, Color>(ColorsThemeItem.GetColors(this.cache), (Func<ColorItem, string>)(o => o.Name), (Func<ColorItem, Color>)(o => o.Color));
             return this.colors[colorName];
+        }
+
+        private static FontFamily backup_font = null;
+
+        private static FontFamily BackupFont
+        {
+            get
+            {
+                if (backup_font == null)
+                {
+                    backup_font = new FontFamily("Segoe UI");
+                }
+                return backup_font;
+            }
         }
 
         private FontFamily GetFontFamily(string name)
         {
             if (this.fonts == null)
             {
-                this.fonts = (IDictionary<string, FontFamily>)new Dictionary<string, FontFamily>();
+                this.fonts = new Dictionary<string, FontFamily>();
                 foreach (FontClass fontClass in FontsThemeItem.GetFontClasses(this.cache))
                     this.fonts[fontClass.Name] = new FontFamily(fontClass.FontFace.FontFamily);
             }
-            return this.fonts[name];
+
+            if (this.fonts.ContainsKey(name))
+                return this.fonts[name];
+            else
+                return CommonResourceManager.BackupFont;
         }
     }
 }
