@@ -1,0 +1,207 @@
+﻿<UserControl x:Class="Advent.VmcStudio.StartMenu.Views.EntryPointDocumentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:Advent.VmcStudio.Converters" 
+             xmlns:vmcstudio="clr-namespace:Advent.VmcStudio" 
+             xmlns:io="clr-namespace:System.IO;assembly=mscorlib" 
+             xmlns:vmcex="clr-namespace:Advent.VmcExecute;assembly=Advent.VmcExecute" 
+             xmlns:smp="clr-namespace:Advent.VmcStudio.StartMenu.Presenters">
+
+    <UserControl.CommandBindings>
+        <!-- TODO Fix Save, Can't find route for it-->
+        <!-- <CommandBinding Command="{x:Static Save}" /> -->
+        <CommandBinding Command="{x:Static vmcstudio:VmcStudioCommands.InsertImage}" />
+        <CommandBinding Command="{x:Static vmcstudio:VmcStudioCommands.InsertVideo}" />
+        <CommandBinding Command="{x:Static vmcstudio:VmcStudioCommands.InsertAudio}" />
+    </UserControl.CommandBindings>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Title:</TextBlock>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="4" Text="{Binding Presenter.Title}" />
+                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Path:</TextBlock>
+                <TextBox Name="ExecutionUrlText" Grid.Row="1" Grid.Column="1" Margin="4" Text="{Binding Presenter.ExecutionUrl}" IsEnabled="{Binding Presenter.IsExecutionUrlReadOnly , Converter={StaticResource BooleanNegationConverter}}" />
+                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Arguments:</TextBlock>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="4" Text="{Binding Presenter.Arguments}" IsEnabled="{Binding Presenter.IsArgumentsReadOnly , Converter={StaticResource BooleanNegationConverter}}" />
+                <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center">Page:</TextBlock>
+                <ComboBox Grid.Row="3" Grid.Column="1" MinWidth="200" Margin="4" HorizontalAlignment="Left" 
+                          ItemsSource="{x:Static smp:EntryPointPresenter.MediaCenterPages}" DisplayMemberPath="Name" 
+                          IsEnabled="{Binding Presenter.IsVmcExecute}" SelectedItem="{Binding Presenter.TargetPage}" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Margin="24,12,8,8">
+                    <TextBlock>Required capabilities:</TextBlock>
+                    <ItemsControl Margin="4" ItemsSource="{Binding Path=Presenter.CapabilitiesRequired}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsRequired}" />
+                                    <TextBlock Margin="4" Text="{Binding Capability , Converter={StaticResource CamelCaseToWords}}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock>When launched, do the following:</TextBlock>
+                    <ComboBox Margin="4" ItemsSource="{x:Static smp:EntryPointPresenter.NowPlayingDirectives}" DisplayMemberPath="Text" SelectedItem="{Binding Presenter.NowPlayingDirective}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="8" HorizontalAlignment="Center">
+                    <TextBlock Margin="4">Active image:</TextBlock>
+                    <ContentControl Style="{StaticResource GlassBorder}">
+                        <Image Width="160" Height="160" Stretch="Uniform" Source="{Binding Presenter.Image}" />
+                    </ContentControl>
+                    <Button Margin="4" MaxWidth="180">Browse...</Button>
+                    <Button Margin="4" MaxWidth="180" IsEnabled="{Binding Presenter.IsImageAutoGenerated , Converter={StaticResource BooleanNegationConverter}}">Auto</Button>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Margin="8" HorizontalAlignment="Center">
+                    <TextBlock Margin="4">Inactive image:</TextBlock>
+                    <ContentControl Style="{StaticResource GlassBorder}">
+                        <Image Width="160" Height="160" Stretch="Uniform" Source="{Binding Presenter.InactiveImage}" />
+                    </ContentControl>
+                    <Button Margin="4" MaxWidth="180">Browse...</Button>
+                    <Button Margin="4" MaxWidth="180" IsEnabled="{Binding Presenter.IsInactiveImageAutoGenerated , Converter={StaticResource BooleanNegationConverter}}">Auto</Button>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2" Visibility="{Binding Presenter.IsVmcExecute , Converter={StaticResource BooleanToVisibility}}">
+                <Grid.Resources>
+                    <Style x:Key="{x:Type vmcstudio:ImageButton}" TargetType="{x:Type vmcstudio:ImageButton}">
+                        <Setter Property="HighlightBackground" Value="{x:Static SystemColors.HighlightBrush}" />
+                    </Style>
+                </Grid.Resources>
+                <StackPanel Margin="12,4,0,0">
+                    <StackPanel>
+                        <TextBlock>Close the program when these buttons are pressed:</TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <ItemsControl Name="m_closeKeysControl" ItemsSource="{Binding Presenter.CloseKeys}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="4,0,0,0">
+                                            <vmcstudio:ImageButton Click="DeleteCloseKey_Click" ImageSource="../Images/DeleteSmall.png" />
+                                            <Label Content="{Binding}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                            <vmcstudio:ImageButton Click="CloseKeysAdd" ImageSource="../../Images/NewSmall.png" Margin="4,0,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="0,4,0,0">
+                        <TextBlock>Kill the program when these buttons are pressed:</TextBlock>
+                        <StackPanel Orientation="Horizontal" IsEnabled="{Binding ElementName=m_useKillKeysCheck, Path=IsChecked}">
+                            <ItemsControl Name="m_killKeysControl" ItemsSource="{Binding Presenter.KillKeys}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="4,0,0,0">
+                                            <vmcstudio:ImageButton Click="DeleteKillKey_Click" ImageSource="../Images/DeleteSmall.png" />
+                                            <Label Content="{Binding}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                            <vmcstudio:ImageButton Click="KillKeysAdd" ImageSource="../../Images/NewSmall.png" Margin="4,0,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3" Visibility="{Binding Presenter.IsVmcExecute , Converter={StaticResource BooleanToVisibility}}">
+                <StackPanel Orientation="Vertical" Margin="12,4,4,0">
+                    <TextBlock>Play the following media:</TextBlock>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ListView Name="mediaList" Grid.Column="0" Height="300" ItemsSource="{Binding Presenter.Media}">
+                            <ListView.CommandBindings>
+                                <CommandBinding Command="Delete" />
+                            </ListView.CommandBindings>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Preview">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Margin="2" Width="48" Source="{Binding Image}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Name">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock VerticalAlignment="Center" Margin="2" Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Path">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock VerticalAlignment="Center" Margin="2" Text="{Binding Path}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <StackPanel Grid.Column="1" Margin="4">
+                            <StackPanel.Resources>
+                                <ObjectDataProvider x:Key="drives" ObjectType="{x:Type io:DriveInfo}" MethodName="GetDrives" />
+                            </StackPanel.Resources>
+                            <ItemsControl ItemsSource="{Binding Source={StaticResource drives}}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        
+                                        <Button Name="addDvdButton" Visibility="Collapsed" Margin="4">
+                                            <TextBlock Margin="2" Text="{Binding Path=Name, Converter={StaticResource StringFormatter}, ConverterParameter=Play DVD ({0})}" />
+                                        </Button>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Value="CDRom" Binding="{Binding Path=DriveType}">
+                                                <Setter TargetName="addDvdButton" Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <Button Margin="4" Command="{x:Static vmcstudio:VmcStudioCommands.InsertImage}">Add image</Button>
+                            <Button Margin="4" Command="{x:Static vmcstudio:VmcStudioCommands.InsertVideo}">Add video</Button>
+                            <Button Margin="4" Command="{x:Static vmcstudio:VmcStudioCommands.InsertAudio}">Add audio</Button>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="Advent.VmcStudio.StartMenu.QuickLink" Name="m_quickLink" ClipToBounds="False" Background="#00FFFFFF" 
+             p2:DragDrop.DragMouseButton="Left" 
+             MouseLeftButtonUp="QuickLink_MouseUp" 
+             p2:DragDrop.Drag="OnDrag" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:ib="clr-namespace:Advent.VmcStudio" 
+             xmlns:p2="clr-namespace:Advent.Common.UI;assembly=Advent.Common"
+             xmlns:local="clr-namespace:Advent.VmcStudio">
+    <UserControl.Resources>
+        <Style x:Key="LinkImageStyle" TargetType="{x:Type Image}">
+            <Setter Property="Image.Source" Value="{Binding Path=Image}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Image}" Value="{x:Null}">
+                    <Setter Property="Image.Source" Value="pack://application:,,,/Images/error.png" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=m_quickLink, Path=Strip.Strip.IsEnabled}" Value="False">
+                    <Setter Property="Image.Source" Value="{Binding ElementName=m_quickLink, Path=NormalisedNonFocusImage}" />
+                    <Setter Property="UIElement.Opacity" Value="0.5" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=IsEnabled}" Value="False">
+                    <Setter Property="Image.Source" Value="{Binding ElementName=m_quickLink, Path=NormalisedNonFocusImage}" />
+                    <Setter Property="UIElement.Opacity" Value="0.5" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="LinkBorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="Border.BorderThickness" Value="3" />
+            <Setter Property="Border.BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Opacity="0" Color="{Binding Source={x:Static local:VmcStudioUtil.Application}, Path=CommonResources.HighlightColor}" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Border.Background">
+                <Setter.Value>
+                    <SolidColorBrush Opacity="0" Color="{Binding Source={x:Static local:VmcStudioUtil.Application}, Path=CommonResources.HighlightColor}" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Border.CornerRadius" Value="3" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=m_quickLink, Path=IsDefaultLink}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="BorderBrush.Opacity" To="0.5" Duration="0:0:0.3" />
+                                <DoubleAnimation Storyboard.TargetProperty="Background.Opacity" To="0.1" Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="BorderBrush.Opacity" To="0" Duration="0:0:0.3" />
+                                <DoubleAnimation Storyboard.TargetProperty="Background.Opacity" To="0" Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Control.MouseEnter">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="m_focusImage" Storyboard.TargetProperty="Opacity" To="0.3" Duration="0:0:0.2" />
+                    <DoubleAnimation Storyboard.TargetName="m_isEnabledCheck" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.1" />
+                    <DoubleAnimation Storyboard.TargetName="m_deleteButton" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.1" />
+                    <DoubleAnimation Storyboard.TargetName="m_titleText" Storyboard.TargetProperty="ButtonOpacity" To="1" Duration="0:0:0.1" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Control.MouseLeave">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="m_focusImage" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2" />
+                    <DoubleAnimation Storyboard.TargetName="m_isEnabledCheck" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.1" />
+                    <DoubleAnimation Storyboard.TargetName="m_deleteButton" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.1" />
+                    <DoubleAnimation Storyboard.TargetName="m_titleText" Storyboard.TargetProperty="ButtonOpacity" To="0" Duration="0:0:0.1" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Border Style="{StaticResource LinkBorderStyle}">
+        <StackPanel>
+            <Grid Height="75" Width="100">
+                <Image Name="m_backgroundImage" Source="{Binding Source={x:Static local:VmcStudioUtil.Application}, Path=CommonResources.QuickLinkBackground}" />
+                <Image Name="m_linkImage" Margin="5, 15" Stretch="Uniform" Style="{StaticResource LinkImageStyle}" />
+                <Image Name="m_focusImage" Width="50" Height="25" Opacity="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10" Source="{Binding Source={x:Static local:VmcStudioUtil.Application}, Path=CommonResources.QuickLinkFocusImage}" />
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <CheckBox Name="m_isEnabledCheck" Opacity="0" VerticalAlignment="Center" Margin="2,0" IsChecked="{Binding Path=IsEnabled, Mode=TwoWay}" Visibility="{Binding Path=CanSetEnabled, Converter={StaticResource BooleanToVisibility}}" />
+                <ib:ImageButton x:Name="m_deleteButton" Click="m_deleteButton_Click" Opacity="0" ImageSource="pack://application:,,,/Images/DeleteSmall.png" Visibility="{Binding Path=CanDelete, Converter={StaticResource BooleanToVisibility}}" />
+                <ib:EditableTextBlock x:Name="m_titleText" HorizontalAlignment="Center" ButtonOpacity="0" Margin="4,0,0,0" Text="{Binding Path=Title, Mode=TwoWay}" IsEditEnabled="{Binding Path=CanEditTitle}" FontFamily="{Binding Source={x:Static local:VmcStudioUtil.Application}, Path=CommonResources.RegularFont}">
+                    <ib:EditableTextBlock.Foreground>
+                        <SolidColorBrush Color="{Binding Source={x:Static local:VmcStudioUtil.Application}, Path=CommonResources.TextColor}" />
+                    </ib:EditableTextBlock.Foreground>
+                </ib:EditableTextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

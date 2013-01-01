@@ -1,0 +1,293 @@
+﻿<!-- Icon="Media Center Studio.ico" -->
+    <rw:RibbonWindow x:Class="Advent.VmcStudio.MainWindow" Name="window" Height="700" Width="1000" Background="#FFFFFFFF"  IconVisibility="Hidden" Title="{Binding Path=ApplicationTitle}" Closing="WindowClosing" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                 xmlns:rw="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary" 
+                 xmlns:ctiv="clr-namespace:Advent.VmcStudio.Theme.View" 
+                 xmlns:epdv="clr-namespace:Advent.VmcStudio.StartMenu.Views" 
+                 xmlns:sm="clr-namespace:Advent.VmcStudio.StartMenu" 
+                 xmlns:smp="clr-namespace:Advent.VmcStudio.StartMenu.Presenters" 
+                 xmlns:vsc="clr-namespace:Advent.VmcStudio" 
+                 xmlns:dpc="clr-namespace:Advent.VmcStudio.Converters"
+                 xmlns:thememodel="clr-namespace:Advent.VmcStudio.Theme.Model">
+    <rw:RibbonWindow.Resources>
+        <sm:GameProvider x:Key="gameProvider" />
+        <DataTemplate x:Key="{DataTemplateKey {x:Type thememodel:ThemeEditDocument}}" DataType="{x:Type thememodel:ThemeEditDocument}">
+            <DataTemplate.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type thememodel:ThemeItemCategoryModel}" ItemsSource="{Binding Children}">
+                    <ctiv:CategoryTreeItemView>
+                        <ctiv:CategoryTreeItemView.CommandBindings />
+                    </ctiv:CategoryTreeItemView>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type thememodel:ThemeItemModel}">
+                    <ctiv:ThemeTreeItemControl />
+                </DataTemplate>
+            </DataTemplate.Resources>
+            <ctiv:ThemeEditDocumentControl />
+        </DataTemplate>
+        <DataTemplate x:Key="{DataTemplateKey {x:Type thememodel:ThemeSelectionDocument}}" DataType="{x:Type thememodel:ThemeSelectionDocument}">
+            <ctiv:ThemeSelectionDocumentControl />
+        </DataTemplate>
+        <DataTemplate x:Key="{DataTemplateKey {x:Type sm:StartMenuDocument}}" DataType="{x:Type sm:StartMenuDocument}">
+            <sm:StartMenuDocumentView />
+        </DataTemplate>
+        <DataTemplate x:Key="{DataTemplateKey {x:Type smp:EntryPointDocument}}" DataType="{x:Type smp:EntryPointDocument}">
+            <epdv:EntryPointDocumentView />
+        </DataTemplate>
+    </rw:RibbonWindow.Resources>
+    <rw:RibbonWindow.CommandBindings>
+        <CommandBinding Command="{x:Static vsc:VmcStudioCommands.RestoreDefault}" CanExecute="RestoreDefaultCanExecute" Executed="RestoreDefaultExecuted" />
+        <CommandBinding Command="{x:Static vsc:VmcStudioCommands.CreateSupportPackage}" Executed="CreateSupportPackageExecuted" />
+        <CommandBinding Command="{x:Static vsc:VmcStudioCommands.Themes}" Executed="ThemesExecuted" />
+        <CommandBinding Command="{x:Static vsc:VmcStudioCommands.StartMenu}" Executed="StartMenuExecuted" />
+        <CommandBinding Command="{x:Static vsc:VmcStudioCommands.StartMediaCenter}" Executed="StartMediaCenter" />
+    </rw:RibbonWindow.CommandBindings>
+    <DockPanel LastChildFill="True">
+        <rw:Ribbon DockPanel.Dock="Top" Title="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=Title}">
+            <rw:Ribbon.Resources>
+                <rw:RibbonCommand x:Key="FileCommand" LabelTitle="File" />
+                <rw:RibbonCommand x:Key="ClipboardCommand" LabelTitle="Clipboard" />
+                <rw:RibbonCommand x:Key="InsertCommand" LabelTitle="Insert" />
+                <rw:RibbonCommand x:Key="HelpMenuCommand" LabelTitle="Help" />
+                <rw:RibbonCommand x:Key="DocumentsCommand" LabelTitle="Documents" />
+                <rw:RibbonCommand x:Key="RestoreCommand" LabelTitle="Restore" />
+                <rw:RibbonCommand x:Key="ApplicationMenuCommand" LargeImageSource="Images\MCS32.png" SmallImageSource="Images\MCS16.png" LabelTitle="Menu" />
+                <vsc:VmcStudioCommand x:Key="SaveCommand" Command="{x:Static ApplicationCommands.Save}" LargeImageSource="Images\Save.png" SmallImageSource="Images\SaveSmall.png" LabelTitle="Save" />
+                <vsc:VmcStudioCommand x:Key="OpenCommand" Command="{x:Static ApplicationCommands.Open}" LargeImageSource="Images\Open.png" SmallImageSource="Images\OpenSmall.png" LabelTitle="Open" />
+                <vsc:VmcStudioCommand x:Key="DeleteCommand" Command="{x:Static ApplicationCommands.Delete}" LargeImageSource="Images\Delete.png" SmallImageSource="Images\DeleteSmall.png" LabelTitle="Delete" />
+                <vsc:VmcStudioCommand x:Key="NewCommand" Command="{x:Static ApplicationCommands.New}" LargeImageSource="Images\New.png" SmallImageSource="Images\NewSmall.png" LabelTitle="New" />
+                <vsc:VmcStudioCommand x:Key="PasteCommand" Command="{x:Static ApplicationCommands.Paste}" LargeImageSource="Images\Paste.png" SmallImageSource="Images\PasteSmall.png" LabelTitle="Paste" />
+                <vsc:VmcStudioCommand x:Key="CopyCommand" Command="{x:Static ApplicationCommands.Copy}" LargeImageSource="Images\Copy.png" SmallImageSource="Images\CopySmall.png" LabelTitle="Copy" />
+                <vsc:VmcStudioCommand x:Key="CutCommand" Command="{x:Static ApplicationCommands.Cut}" LargeImageSource="Images\Cut.png" SmallImageSource="Images\CutSmall.png" LabelTitle="Cut" />
+                <vsc:VmcStudioCommand x:Key="ApplyThemeCommand" Command="{x:Static thememodel:ThemeCommands.Apply}" LargeImageSource="Images\Apply.png" SmallImageSource="Images\ApplySmall.png" LabelTitle="Apply" LabelDescription="Applies the selected theme." />
+                <vsc:VmcStudioCommand x:Key="NewStripCommand" Command="{x:Static sm:StartMenuCommands.NewStrip}" LabelTitle="Menu Strip" />
+                <vsc:VmcStudioCommand x:Key="NewApplicationCommand" Command="{x:Static sm:StartMenuCommands.NewApplication}" LargeImageSource="{x:Static vsc:VmcStudioUtil.DefaultApplicationImage}" LabelTitle="Application" />
+                <vsc:VmcStudioCommand x:Key="NewGameCommand" Command="{x:Static sm:StartMenuCommands.NewGame}" LargeImageSource="Images\Games.png" SmallImageSource="Images\Games.png" LabelTitle="Game" />
+                <vsc:VmcStudioCommand x:Key="RestoreDefaultCommand" Command="{x:Static vsc:VmcStudioCommands.RestoreDefault}" LabelTitle="Restore Default" />
+                <vsc:VmcStudioCommand x:Key="ImportThemeCommand" Command="{x:Static thememodel:ThemeCommands.Import}" LabelTitle="Import Theme" />
+                <vsc:VmcStudioCommand x:Key="ExportThemeCommand" Command="{x:Static thememodel:ThemeCommands.Export}" LabelTitle="Export Theme" />
+                <vsc:VmcStudioCommand x:Key="AboutCommand" Command="{x:Static vsc:VmcStudioCommands.About}" LabelTitle="About" />
+                <vsc:VmcStudioCommand x:Key="CreateSupportPackageCommand" Command="{x:Static vsc:VmcStudioCommands.CreateSupportPackage}" LabelTitle="Create Support Package" />
+                <vsc:VmcStudioCommand x:Key="InsertImageCommand" Command="{x:Static vsc:VmcStudioCommands.InsertImage}" LabelTitle="Image" />
+                <vsc:VmcStudioCommand x:Key="InsertVideoCommand" Command="{x:Static vsc:VmcStudioCommands.InsertVideo}" LabelTitle="Video" />
+                <vsc:VmcStudioCommand x:Key="InsertAudioCommand" Command="{x:Static vsc:VmcStudioCommands.InsertAudio}" LabelTitle="Audio" />
+                <vsc:VmcStudioCommand x:Key="ThemesDocumentCommand" Command="{x:Static vsc:VmcStudioCommands.Themes}" LabelTitle="Themes" />
+                <vsc:VmcStudioCommand x:Key="StartMenuDocumentCommand" Command="{x:Static vsc:VmcStudioCommands.StartMenu}" LabelTitle="Start Menu" />
+                <vsc:VmcStudioCommand x:Key="StartMediaCenterCommand" Command="{x:Static vsc:VmcStudioCommands.StartMediaCenter}" LargeImageSource="Images\MediaCenter.png" SmallImageSource="Images\MediaCenterSmall.png" LabelTitle="Start Media Center" />
+            </rw:Ribbon.Resources>
+            <rw:Ribbon.QuickAccessToolBar>
+                <rw:RibbonQuickAccessToolBar>
+                    <rw:RibbonButton Command="{StaticResource SaveCommand}" Focusable="False" />
+                    <rw:RibbonButton Command="{StaticResource StartMediaCenterCommand}" Focusable="False" />
+                </rw:RibbonQuickAccessToolBar>
+            </rw:Ribbon.QuickAccessToolBar>
+            <rw:Ribbon.ApplicationMenu>
+                <rw:RibbonApplicationMenu Command="{StaticResource ApplicationMenuCommand}">
+                    <rw:RibbonApplicationMenuItem Command="{StaticResource SaveCommand}" Focusable="False" />
+                    <rw:RibbonApplicationMenuItem Command="{StaticResource ImportThemeCommand}" Focusable="False" />
+                    <rw:RibbonApplicationMenuItem Command="{StaticResource ExportThemeCommand}" Focusable="False" />
+                    <rw:RibbonApplicationMenuItem Command="{StaticResource StartMediaCenterCommand}" Focusable="False" />
+                </rw:RibbonApplicationMenu>
+            </rw:Ribbon.ApplicationMenu>
+            <rw:Ribbon.Tabs>
+                <rw:RibbonTab Label="Home">
+                    <rw:RibbonGroup Command="{StaticResource FileCommand}">
+                        <rw:RibbonButton Command="{StaticResource OpenCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource SaveCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource NewCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource DeleteCommand}" Focusable="False" />
+                    </rw:RibbonGroup>
+                    <rw:RibbonGroup Command="{StaticResource DocumentsCommand}">
+                        <rw:RibbonButton Command="{StaticResource ThemesDocumentCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource StartMenuDocumentCommand}" Focusable="False" />
+                    </rw:RibbonGroup>
+                    <rw:RibbonGroup Command="{StaticResource ClipboardCommand}">
+                        <rw:RibbonButton Command="{StaticResource PasteCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource CopyCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource CutCommand}" Focusable="False" />
+                    </rw:RibbonGroup>
+                    <rw:RibbonGroup Command="{StaticResource RestoreCommand}">
+                        <rw:RibbonButton Command="{StaticResource RestoreDefaultCommand}" Focusable="False" />
+                    </rw:RibbonGroup>
+                    <rw:RibbonGroup>
+                        <rw:RibbonButton Command="{StaticResource StartMediaCenterCommand}" Focusable="False" />
+                    </rw:RibbonGroup>
+                    <rw:RibbonGroup Command="{StaticResource HelpMenuCommand}">
+                        <rw:RibbonButton Command="{StaticResource CreateSupportPackageCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource AboutCommand}" Focusable="False" />
+                    </rw:RibbonGroup>
+                </rw:RibbonTab>
+                <rw:RibbonTab Label="Themes">
+                    <rw:RibbonGroup>
+                        <rw:RibbonButton Command="{StaticResource ApplyThemeCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource ImportThemeCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource ExportThemeCommand}" Focusable="False" />
+                    </rw:RibbonGroup>
+                    <rw:RibbonGroup Command="{StaticResource InsertCommand}">
+                        <rw:RibbonButton Command="{StaticResource InsertImageCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource InsertAudioCommand}" Focusable="False" />
+                    </rw:RibbonGroup>
+                </rw:RibbonTab>
+                <rw:RibbonTab Label="Start Menu">
+                    <rw:RibbonGroup Command="{StaticResource InsertCommand}">
+                        <rw:RibbonButton Command="{StaticResource NewStripCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource NewApplicationCommand}" Focusable="False" />
+                        <rw:RibbonDropDownButton Name="gamesDropDown" Command="{StaticResource NewGameCommand}" Focusable="False" ItemsSource="{Binding Source={StaticResource gameProvider}, Path=Games}">
+                            <rw:RibbonDropDownButton.ItemContainerStyle>
+                                <!-- TODO removed connectionid attr: x:ConnectionId="8" -->
+                                <Style TargetType="{x:Type MenuItem}"  />
+                            </rw:RibbonDropDownButton.ItemContainerStyle>
+                            <rw:RibbonDropDownButton.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <ContentControl Grid.Row="0" Style="{StaticResource GlassBorder}" Width="96" Height="96">
+                                            <Image Stretch="Uniform" Source="{Binding Path=Image}" />
+                                        </ContentControl>
+                                        <TextBlock Grid.Row="1" TextBlock.FontWeight="Bold" HorizontalAlignment="Center" Text="{Binding Path=Name}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </rw:RibbonDropDownButton.ItemTemplate>
+                        </rw:RibbonDropDownButton>
+                    </rw:RibbonGroup>
+                    <rw:RibbonGroup Command="{StaticResource InsertCommand}">
+                        <rw:RibbonButton Command="{StaticResource InsertImageCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource InsertVideoCommand}" Focusable="False" />
+                        <rw:RibbonButton Command="{StaticResource InsertAudioCommand}" Focusable="False" />
+                    </rw:RibbonGroup>
+                </rw:RibbonTab>
+            </rw:Ribbon.Tabs>
+        </rw:Ribbon>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid Margin="0,2,0,0">
+                <Grid.Resources>
+                    <Style x:Key="{x:Type TabItem}" TargetType="{x:Type TabItem}">
+                        <Setter Property="HeaderedContentControl.Header" Value="{Binding DataContext.Title}" />
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TabItem}">
+                                    <Border Name="tabItemBorder" CornerRadius="5,5,0,0" BorderBrush="#00FFFFFF" BorderThickness="1,1,1,1" Padding="4,2" Background="#00FFFFFF">
+                                        <StackPanel Orientation="Horizontal">
+                                            <ContentPresenter ContentSource="Header" />
+                                            <!-- TODO removed connectionid attr: x:ConnectionId="9" -->
+                                            <Path Name="tabItemCloseButton" Stretch="Fill" Width="8" Height="8" Margin="6,0,0,0" Visibility="Hidden" StrokeThickness="0.5" Stroke="#FF333333" Fill="#FF969696" Data="F1M2.28484E-07,1.33331L1.33333,0 4.00001,2.66669 6.66667,6.10352E-05 8,1.33331 5.33334,4 8,6.66669 6.66667,8 4,5.33331 1.33333,8 1.086E-07,6.66669 2.66667,4 2.28484E-07,1.33331z" />
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger SourceName="tabItemCloseButton" Property="UIElement.IsMouseOver" Value="True">
+                                            <Setter TargetName="tabItemCloseButton" Property="Shape.Fill" Value="#FFB83C3D" />
+                                        </Trigger>
+                                        <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                            <Setter TargetName="tabItemBorder" Property="Border.Background" Value="#FFFAFAFA" />
+                                            <Setter TargetName="tabItemBorder" Property="Border.BorderBrush" Value="#FFD6E0F9" />
+                                            <Setter TargetName="tabItemCloseButton" Property="UIElement.Visibility" Value="Visible" />
+                                        </Trigger>
+                                        <Trigger Property="TabItem.IsSelected" Value="True">
+                                            <Setter TargetName="tabItemBorder" Property="Border.Background">
+                                                <Setter.Value>
+                                                    <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                                                        <GradientStop Color="#FFFFFFFF" Offset="0" />
+                                                        <GradientStop Color="#FFE5EFFB" Offset="0.5" />
+                                                        <GradientStop Color="#FFD9E3EF" Offset="0.5" />
+                                                        <GradientStop Color="#FFD9E3EF" Offset="1" />
+                                                    </LinearGradientBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter TargetName="tabItemBorder" Property="Border.BorderBrush" Value="#FFC6D0E9" />
+                                            <Setter TargetName="tabItemBorder" Property="Border.BorderThickness" Value="1,1,1,0" />
+                                            <Setter TargetName="tabItemCloseButton" Property="UIElement.Visibility" Value="Visible" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <Style x:Key="{x:Type TabControl}" TargetType="{x:Type TabControl}">
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TabControl}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <TabPanel Grid.Row="0" ZIndex="1" Margin="4,0,4,-1" IsItemsHost="True" Background="#00FFFFFF" />
+                                        <Border Grid.Row="1" BorderBrush="#FFC6D0E9" BorderThickness="1" CornerRadius="3,3,0,0">
+                                            <Border BorderBrush="#FFD9E3EF" BorderThickness="2" CornerRadius="3,3,0,0" Padding="2">
+                                                <Border.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FFFFFFFF" Offset="0.342" />
+                                                        <GradientStop Color="#FFDEF1FF" Offset="1" />
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+                                                <ContentPresenter ContentSource="SelectedContent" />
+                                            </Border>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Grid.Resources>
+                <TabControl Name="tabs" ItemsSource="{Binding Path=Documents, ElementName=window}" SelectionChanged="Tabs_SelectionChanged" />
+            </Grid>
+            <Grid Name="overlayGrid">
+                <Grid.Resources>
+                    <dpc:DoublePercentageConverter x:Key="ProgressWidthConverter" Percentage="0.8" />
+                </Grid.Resources>
+                <Grid.Style>
+                    <Style TargetType="{x:Type Grid}">
+                        <Style.Resources>
+                            <Visibility x:Key="Visible"></Visibility>
+                            <Visibility x:Key="Collapsed"></Visibility>
+                            <!--<Visibility x:Key="Visibility">Collapsed</Visibility>
+                            
+                            <Visibility>Visible</Visibility>
+                            
+                            <Visibility>Collapsed</Visibility>
+                            -->
+                        </Style.Resources>
+                        <Style.Setters>
+                            <Setter Property="UIElement.Opacity" Value="0" />
+                            <Setter Property="UIElement.Visibility" Value="Collapsed" />
+                        </Style.Setters>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsExclusiveOperationInProgress}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.4" AccelerationRatio="0.3" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource Visible}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.4" AccelerationRatio="0.3" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{StaticResource Collapsed}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid Background="#FF000000" Opacity="0.5" />
+                <ContentControl HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Static SystemColors.WindowBrush}" Style="{StaticResource GlassBorder}" Width="{Binding ElementName=overlayGrid, Path=ActualWidth, Converter={StaticResource ProgressWidthConverter}}">
+                    <StackPanel Margin="16">
+                        <TextBlock Margin="0,0,0,16" TextBlock.FontSize="16" Text="{Binding ExclusiveOperationMessage, Mode=OneWay}" />
+                        <TextBlock Margin="0,0,0,16" Text="{Binding ExclusiveOperationProgressMessage, Mode=OneWay}" />
+                        <ProgressBar MinWidth="400" MinHeight="20" Minimum="0" Maximum="1" Value="{Binding ExclusiveOperationProgress, Mode=OneWay}" />
+                    </StackPanel>
+                </ContentControl>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</rw:RibbonWindow>

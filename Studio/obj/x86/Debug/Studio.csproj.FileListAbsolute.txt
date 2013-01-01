@@ -1,0 +1,67 @@
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\bin\Debug\Media Center Studio.exe.config
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\bin\Debug\Media Center Studio.exe
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\bin\Debug\Media Center Studio.pdb
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\bin\Debug\Advent.Common.GAC.dll
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\bin\Debug\Advent.MediaCenter.dll
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\bin\Debug\RibbonControlsLibrary.dll
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\bin\Debug\Advent.Common.GAC.pdb
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\bin\Debug\Advent.MediaCenter.pdb
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\ImageButton.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Logo.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\KeyListenerWindow.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\BiographyItemControl.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\EditableTextBlock.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\ImageButton.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Logo.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\EntryPoint.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\KeyListenerWindow.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\MenuStrip.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\QuickLink.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\StartMenu.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\Views\EntryPointDocumentView.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\BiographyItemControl.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\CategoryTreeItemView.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\App.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Media Center Studio_MarkupCompile.cache
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Media Center Studio_MarkupCompile.lref
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\App.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\EditableTextBlock.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\EntryPoint.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\MenuStrip.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\QuickLink.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\StartMenu.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\Views\EntryPointDocumentView.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\CategoryTreeItemView.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Media Center Studio.g.resources
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Advent.VmcStudio.Properties.Resources.resources
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Media Center Studio.exe
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Media Center Studio.pdb
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\ColorsThemeItemControl.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\ColorsThemeItemControl.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\FontOverrideView.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\FontOverrideView.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\FontsThemeItemControl.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\FontsThemeItemControl.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\ImageResourceThemeItemControl.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\SoundResourceThemeItemView.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\ImageResourceThemeItemControl.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\SoundResourceThemeItemView.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\StartMenuItemControl.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\ThemeEditDocumentControl.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\StartMenuItemControl.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\ThemeEditDocumentControl.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\ThemeSelectionDocumentControl.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\ThemeSelectionDocumentControl.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\ThemeTreeItemControl.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\Theme\View\ThemeTreeItemControl.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\StartMenuDocumentView.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\MainWindow.baml
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Studio\obj\x86\Debug\StartMenu\StartMenuDocumentView.baml
+C:\Users\Orange\documents\visual studio 2010\Projects\MCS\Studio\bin\Debug\Microsoft.DirectX.DirectDraw.dll
+C:\Users\Orange\documents\visual studio 2010\Projects\MCS\Studio\bin\Debug\Microsoft.DirectX.dll
+C:\Users\Orange\documents\visual studio 2010\Projects\MCS\Studio\bin\Debug\ICSharpCode.SharpZipLib.dll

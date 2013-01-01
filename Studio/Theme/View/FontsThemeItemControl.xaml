@@ -1,0 +1,47 @@
+﻿<UserControl 
+    x:Class="Advent.VmcStudio.Theme.View.FontsThemeItemControl" 
+    Name="this" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:stffc="clr-namespace:Advent.VmcStudio.Converters" 
+    xmlns:fov="clr-namespace:Advent.VmcStudio.Theme.View"
+    xmlns:model="clr-namespace:Advent.VmcStudio.Theme.Model"
+    xmlns:util="clr-namespace:Advent.VmcStudio" 
+    >
+    <UserControl.Resources>
+        <stffc:StringToFontFamilyConverter x:Key="StringToFontFamily" />
+        <DataTemplate x:Key="{DataTemplateKey {x:Type FontFamily}}" DataType="{x:Type FontFamily}">
+            <TextBlock Text="{Binding Converter={StaticResource FontFamilyToString}}" TextBlock.FontFamily="{Binding}" />
+        </DataTemplate>
+        <DataTemplate x:Key="{DataTemplateKey {x:Type model:FontClassModel}}" DataType="{x:Type model:FontClassModel}">
+            <StackPanel Orientation="Horizontal" Margin="4">
+                <Label MinWidth="150" Content="{Binding Converter={StaticResource CamelCaseToWords}, Path=Item.Name}" />
+                <ComboBox MinWidth="150" ItemsSource="{Binding ElementName=this, Path=DataContext.Theme.FontFamilies}" SelectedItem="{Binding Converter={StaticResource StringToFontFamily}, Path=Item.FontFace.FontFamily}" FontWeight="{Binding ElementName=fontWeights, Path=SelectedItem}">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <ComboBox Name="fontWeights" Margin="8,0,0,0" ItemsSource="{x:Static util:VmcStudioUtil.FontWeights}" SelectedItem="{Binding Path=Item.FontFace.FontWeight}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="{DataTemplateKey {x:Type model:FontOverrideModel}}" DataType="{x:Type model:FontOverrideModel}">
+            <fov:FontOverrideView DataContext="{Binding}" />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="8">
+            <TextBlock TextBlock.FontWeight="Bold">Font classes:</TextBlock>
+            <ItemsControl ItemsSource="{Binding FontClasses}" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="8">
+            <TextBlock TextBlock.FontWeight="Bold">Fonts:</TextBlock>
+            <ItemsControl ItemsSource="{Binding FontOverrides}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

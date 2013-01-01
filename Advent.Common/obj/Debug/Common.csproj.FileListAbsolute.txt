@@ -1,0 +1,5 @@
+c:\users\orange\documents\visual studio 2010\Projects\MCS\Common\obj\Debug\ResolveAssemblyReference.cache
+c:\users\orange\documents\visual studio 2010\Projects\MCS\Common\bin\Debug\Common.dll
+c:\users\orange\documents\visual studio 2010\Projects\MCS\Common\bin\Debug\Common.pdb
+c:\users\orange\documents\visual studio 2010\Projects\MCS\Common\obj\Debug\Common.dll
+c:\users\orange\documents\visual studio 2010\Projects\MCS\Common\obj\Debug\Common.pdb

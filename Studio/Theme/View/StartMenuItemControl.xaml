@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Advent.VmcStudio.Theme.View.StartMenuItemControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:fov="clr-namespace:Advent.VmcStudio.Theme.View"
+             xmlns:model="clr-namespace:Advent.VmcStudio.Theme.Model">
+    <UserControl.Resources>
+        <DataTemplate x:Key="{DataTemplateKey {x:Type model:FontOverrideModel}}" DataType="{x:Type model:FontOverrideModel}">
+            <fov:FontOverrideView DataContext="{Binding}" />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Start Menu Item Control" />
+        <ContentControl Grid.Row="1" DataContext="{Binding StripTitleFont}" Content="{Binding}" />
+    </Grid>
+</UserControl>

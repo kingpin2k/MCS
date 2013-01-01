@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Advent.VmcStudio.Theme.View.ThemeEditDocumentControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:irtic="clr-namespace:Advent.VmcStudio.Theme.View"
+             xmlns:model="clr-namespace:Advent.VmcStudio.Theme.Model"
+             xmlns:vmcstudio="clr-namespace:Advent.VmcStudio">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static ApplicationCommands.Save}" CanExecute="SaveCanExecute" Executed="SaveExecuted" />
+        <CommandBinding Command="{x:Static vmcstudio:VmcStudioCommands.InsertImage}" Executed="ImportImagesExecuted" />
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="3" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="0">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">
+                <CheckBox IsChecked="{Binding Theme.HideDefaultItems, Mode=TwoWay}" />
+                <TextBlock Text="Hide default items" Margin="5,0,0,0" />
+            </StackPanel>
+            <TreeView Name="themesTree" ItemsSource="{Binding Theme.Children}">
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}" BasedOn="{x:Type TreeViewItem}">
+                        <Setter Property="TreeViewItem.IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                        <Setter Property="TreeViewItem.IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                        <Setter Property="UIElement.Visibility" Value="{Binding Visibility, Mode=TwoWay}" />
+                    </Style>
+                </TreeView.ItemContainerStyle>
+            </TreeView>
+        </DockPanel>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <ContentControl Grid.Column="2" Padding="8,4" Content="{Binding ElementName=themesTree, Path=SelectedItem}">
+            <ContentControl.Resources>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:ImageResourceModel}}" DataType="{x:Type model:ImageResourceModel}">
+                    <irtic:ImageResourceThemeItemControl DataContext="{Binding}" />
+                </DataTemplate>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:SoundResourceModel}}" DataType="{x:Type model:SoundResourceModel}">
+                    <irtic:SoundResourceThemeItemView DataContext="{Binding}" />
+                </DataTemplate>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:FontsItemModel}}" DataType="{x:Type model:FontsItemModel}">
+                    <irtic:FontsThemeItemControl DataContext="{Binding}" />
+                </DataTemplate>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:ColorsItemModel}}" DataType="{x:Type model:ColorsItemModel}">
+                    <irtic:ColorsThemeItemControl DataContext="{Binding}" />
+                </DataTemplate>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:BiographyModel}}" DataType="{x:Type model:BiographyModel}">
+                    <irtic:BiographyItemControl DataContext="{Binding}" />
+                </DataTemplate>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:StartMenuModel}}" DataType="{x:Type model:StartMenuModel}">
+                    <irtic:StartMenuItemControl DataContext="{Binding}" />
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </Grid>
+</UserControl>

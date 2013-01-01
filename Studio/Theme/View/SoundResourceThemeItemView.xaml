@@ -1,0 +1,6 @@
+﻿<UserControl x:Class="Advent.VmcStudio.Theme.View.SoundResourceThemeItemView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Margin="4">
+        <TextBlock Style="{StaticResource HeadingTextStyle}" Text="{Binding ThemeItem.Name}" />
+        <Button Content="Play" Margin="0,8,0,0" Width="100" HorizontalAlignment="Left" />
+    </StackPanel>
+</UserControl>

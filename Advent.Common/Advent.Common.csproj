@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C1A8162-4006-45FF-A715-39A671D31AB9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Advent</RootNamespace>
+    <AssemblyName>Advent.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>reinvent.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\CollectionUtilities.cs" />
+    <Compile Include="Common\DelayedProgressOperation.cs" />
+    <Compile Include="Common\Diagnostics\ProcessJob.cs" />
+    <Compile Include="Common\Diagnostics\TraceUtil.cs" />
+    <Compile Include="Common\ExceptionEventArgs.cs" />
+    <Compile Include="Common\IDelayedProgressOperation.cs" />
+    <Compile Include="Common\Interop\AdviseEntry.cs" />
+    <Compile Include="Common\Interop\ComStream.cs" />
+    <Compile Include="Common\Interop\DataObject.cs" />
+    <Compile Include="Common\Interop\DataObjectExtensions.cs" />
+    <Compile Include="Common\Interop\DataProtection.cs" />
+    <Compile Include="Common\Interop\DataRequestedEventArgs.cs" />
+    <Compile Include="Common\Interop\DragDropHelper.cs" />
+    <Compile Include="Common\Interop\IDragSourceHelper.cs" />
+    <Compile Include="Common\Interop\IDragSourceHelper2.cs" />
+    <Compile Include="Common\Interop\IDropTargetHelper.cs" />
+    <Compile Include="Common\Interop\IShellItem.cs" />
+    <Compile Include="Common\Interop\IShellItemImageFactory.cs" />
+    <Compile Include="Common\Interop\LanguageUtils.cs" />
+    <Compile Include="Common\Interop\NativeMethods.cs" />
+    <Compile Include="Common\Interop\NativeUtilities.cs" />
+    <Compile Include="Common\Interop\Rect.cs" />
+    <Compile Include="Common\Interop\Resource.cs" />
+    <Compile Include="Common\Interop\ResourceCollection.cs" />
+    <Compile Include="Common\Interop\Shell.cs" />
+    <Compile Include="Common\Interop\UnorganizedStruct.cs" />
+    <Compile Include="Common\Interop\UnmanagedLibrary.cs" />
+    <Compile Include="Common\Interop\VirtualFile.cs" />
+    <Compile Include="Common\IO\FileUtil.cs" />
+    <Compile Include="Common\IO\IResource.cs" />
+    <Compile Include="Common\IO\IResourceLibrary.cs" />
+    <Compile Include="Common\IO\IResourceLibraryCache.cs" />
+    <Compile Include="Common\IO\MemoryLibrary.cs" />
+    <Compile Include="Common\IO\MemoryLibraryCache.cs" />
+    <Compile Include="Common\IO\MemoryResource.cs" />
+    <Compile Include="Common\IO\ResourceExtensions.cs" />
+    <Compile Include="Common\IProgressEnabledOperation.cs" />
+    <Compile Include="Common\ObservableKeyedCollection.cs" />
+    <Compile Include="Common\ProgressEnabledOperation.cs" />
+    <Compile Include="Common\ProgressEventArgs.cs" />
+    <Compile Include="Common\Serialization\IRegistryKeySerialisable.cs" />
+    <Compile Include="Common\Serialization\RegistryKeyNameAttribute.cs" />
+    <Compile Include="Common\Serialization\RegistrySerialiser.cs" />
+    <Compile Include="Common\Serialization\RegistryValueAttribute.cs" />
+    <Compile Include="Common\UI\BeginDragEventArgs.cs" />
+    <Compile Include="Common\UI\DragDrop.cs" />
+    <Compile Include="Common\UI\EnhancedDragEventArgs.cs" />
+    <Compile Include="Common\UI\FontUtil.cs" />
+    <Compile Include="Common\UI\GlobalHook.cs" />
+    <Compile Include="Common\UI\MouseHookEventArgs.cs" />
+    <Compile Include="Common\UI\NotifyPropertyChangedBase.cs" />
+    <Compile Include="Common\UI\NumericTextBox.cs" />
+    <Compile Include="Common\UI\UIExtensions.cs" />
+    <Compile Include="Common\UI\WindowPreview.cs" />
+    <Compile Include="Common\UI\WindowUtil.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="reinvent.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

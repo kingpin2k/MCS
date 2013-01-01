@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Advent.VmcStudio.StartMenu.EntryPoint" 
+             MouseDoubleClick="UserControl_MouseDoubleClick" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:sfc="clr-namespace:Advent.VmcStudio.Converters"
+             xmlns:com="clr-namespace:Advent.Common.UI;assembly=Advent.Common">
+    <UserControl.Resources>
+        <sfc:StringFormatConverter x:Key="IsDirtyConverter" />
+    </UserControl.Resources>
+    <StackPanel com:DragDrop.DragMouseButton="Left" com:DragDrop.Drag="OnDrag">
+        <Image Name="m_image" Stretch="UniformToFill" Width="50" Height="50">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Setter Property="Image.Source" Value="{Binding Path=Image}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Image}" Value="{x:Null}">
+                            <Setter Property="Image.Source" Value="pack://application:,,,/Images/error.png" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <TextBlock HorizontalAlignment="Center">
+      <TextBlock.Style>
+        <Style TargetType="{x:Type TextBlock}">
+          <Setter Property="TextBlock.Text" Value="{Binding Path=Title}" />
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsDirty}" Value="True">
+              <Setter Property="TextBlock.Text" Value="{Binding Path=Title, Converter={StaticResource IsDirtyConverter}, ConverterParameter=0*}" />
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </TextBlock.Style>
+        </TextBlock>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,5 @@
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.Common.GAC\bin\Debug\Advent.Common.GAC.dll
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.Common.GAC\bin\Debug\Advent.Common.GAC.pdb
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.Common.GAC\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.Common.GAC\obj\Debug\Advent.Common.GAC.dll
+C:\Users\Orange\Documents\Visual Studio 2010\Projects\MCS\Advent.Common.GAC\obj\Debug\Advent.Common.GAC.pdb

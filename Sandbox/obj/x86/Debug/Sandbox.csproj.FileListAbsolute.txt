@@ -1,0 +1,5 @@
+C:\Users\Orange\documents\visual studio 2010\Projects\MCS\Sandbox\bin\Debug\Sandbox.exe
+C:\Users\Orange\documents\visual studio 2010\Projects\MCS\Sandbox\bin\Debug\Sandbox.pdb
+C:\Users\Orange\documents\visual studio 2010\Projects\MCS\Sandbox\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Orange\documents\visual studio 2010\Projects\MCS\Sandbox\obj\x86\Debug\Sandbox.exe
+C:\Users\Orange\documents\visual studio 2010\Projects\MCS\Sandbox\obj\x86\Debug\Sandbox.pdb
