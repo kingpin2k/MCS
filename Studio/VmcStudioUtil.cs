@@ -31,7 +31,7 @@ namespace Advent.VmcStudio
         {
             get
             {
-                return "Media Center Studio BETA (" + (object)Assembly.GetExecutingAssembly().GetName().Version + ") Administrator: " + VmcStudioUtil.IsUserAdministrator();
+                return "Media Center Studio Alpha (" + (object)Assembly.GetExecutingAssembly().GetName().Version + ") Administrator: " + VmcStudioUtil.IsUserAdministrator();
             }
         }
 
