@@ -474,6 +474,9 @@ namespace Advent.Common.Interop
         [DllImport("shfolder.dll", CharSet = CharSet.Auto)]
         public static extern int SHGetFolderPath(IntPtr hwndOwner, int nFolder, IntPtr hToken, int dwFlags, StringBuilder lpszPath);
 
+        [DllImport("shell32.dll")]
+        public static extern bool SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)] Guid rfid, uint flags, IntPtr token, out IntPtr pszPath);
+
         public delegate bool EnumResNameDelegate(IntPtr hModule, IntPtr lpszType, IntPtr lpszName, IntPtr lParam);
 
         internal delegate bool EnumResLangProc(IntPtr hModule, int type, int name, ushort language, IntPtr lParam);

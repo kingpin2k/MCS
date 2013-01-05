@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mcs="clr-namespace:Advent.VmcStudio"
     xmlns:sm="clr-namespace:Advent.VmcStudio.StartMenu"
+    xmlns:ui="clr-namespace:Advent.Common.UI;assembly=Advent.Common"
     >
     <UserControl.Resources>
         <Style x:Key="{x:Type sm:MenuStrip}" TargetType="{x:Type sm:MenuStrip}">
@@ -13,7 +14,7 @@
     </UserControl.Resources>
     <Grid>
         <Image Stretch="UniformToFill" Grid.Row="0" Source="{Binding Source={x:Static mcs:VmcStudioUtil.Application}, Path=CommonResources.CommonBackground}" />
-        <ScrollViewer Name="m_stripsScroll" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" p4:DragDrop.AllowEnhancedDrop="True" AllowDrop="True" p4:DragDrop.DropDescription="Move" DragEnter="OnDragEnter" Drop="OnDrop" xmlns:p4="clr-namespace:Advent.Common.UI;assembly=Advent.Common">
+        <ScrollViewer Name="m_stripsScroll" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ui:DragDrop.AllowEnhancedDrop="True" AllowDrop="True" ui:DragDrop.DropDescription="Move" DragEnter="OnDragEnter" Drop="OnDrop" >
             <ScrollViewer.Template>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                     <Grid>

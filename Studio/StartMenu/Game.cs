@@ -135,25 +135,13 @@ namespace Advent.VmcStudio.StartMenu
                                 }
                                 catch (Exception ex)
                                 {
-                                    Trace.TraceWarning(string.Concat(new object[4]
-                  {
-                    (object) "Image for ",
-                    (object) this.name,
-                    (object) " could not be loaded: ",
-                    (object) ex
-                  }));
+                                    Trace.TraceWarning("Image for " + this.name + "could not be loaded: " + ex .Message);
                                 }
                             }
                         }
                         catch (Exception ex)
                         {
-                            Trace.TraceWarning(string.Concat(new object[4]
-              {
-                (object) "Error attempting to get image resource for ",
-                (object) this.name,
-                (object) ":",
-                (object) ex
-              }));
+                            Trace.TraceWarning("Error attempting to get image resource for " + this.name + "could not be loaded: " + ex.Message);
                         }
                         using (RegistryKey registryKey1 = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\GameUX\\"))
                         {
@@ -178,13 +166,7 @@ namespace Advent.VmcStudio.StartMenu
                                                     }
                                                     catch (Exception ex)
                                                     {
-                                                        Trace.TraceWarning(string.Concat(new object[4]
-                            {
-                              (object) "Image for legacy game ",
-                              (object) this.name,
-                              (object) " could not be loaded: ",
-                              (object) ex
-                            }));
+                                                        Trace.TraceWarning("Image for legacy game " + this.name + "could not be loaded: " + ex.Message);
                                                     }
                                                 }
                                             }
@@ -222,17 +204,15 @@ namespace Advent.VmcStudio.StartMenu
                 }
                 catch (Exception ex)
                 {
-                    Trace.TraceWarning(string.Concat(new object[4]
-          {
-            (object) "Error getting GDF data for ",
-            (object) this.Name,
-            (object) ": ",
-            (object) ex
-          }));
+                    Trace.TraceWarning("Error getting GDF data for " + this.name + "could not be loaded: " + ex.Message);
                 }
             }
             if (this.playTasks.Count == 0)
-                throw new ArgumentException("Could not find a play task for " + this.name + ".");
+            {
+                this.IsValid = false;
+                this.InvalidReason = "Could not find a play task for " + this.name + ".";
+                return;
+            }
             if (this.image != null)
                 return;
             string filename = (string)null;
@@ -245,7 +225,7 @@ namespace Advent.VmcStudio.StartMenu
                 }
                 catch
                 {
-                    throw new Exception("You commented out code, but didn't really care at the time");
+                    
                 }
             }
             if (string.IsNullOrEmpty(filename))
@@ -255,13 +235,12 @@ namespace Advent.VmcStudio.StartMenu
             this.image = Shell.GenerateThumbnail(filename);
         }
 
-        [DllImport("shell32.dll")]
-        private static extern bool SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)] Guid rfid, uint flags, IntPtr token, out IntPtr pszPath);
+        
 
         private static string GetKnownFolder(Guid folderID)
         {
             IntPtr pszPath;
-            Game.SHGetKnownFolderPath(folderID, 0U, IntPtr.Zero, out pszPath);
+            NativeMethods.SHGetKnownFolderPath(folderID, 0U, IntPtr.Zero, out pszPath);
             if (!(pszPath != IntPtr.Zero))
                 throw new Win32Exception();
             string str = Marshal.PtrToStringUni(pszPath);
@@ -299,5 +278,8 @@ namespace Advent.VmcStudio.StartMenu
             CurrentUser = 2U,
             AllUsers = 3U,
         }
+
+        public bool IsValid { get; set; }
+        public string InvalidReason { get; set; }
     }
 }

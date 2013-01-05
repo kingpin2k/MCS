@@ -24,11 +24,16 @@ namespace Advent.VmcStudio.StartMenu
             {
                 try
                 {
-                    this.games.Add(new Game((ManagementBaseObject)managementObject));
+                    var game = new Game(managementObject);
+                    //I am trying to root out real exceptions, and throwing exceptions all over the place is annoying me
+                    if (game.IsValid)
+                        this.games.Add(game);
+                    else
+                        Trace.TraceWarning(game.InvalidReason);
                 }
                 catch (ArgumentException ex)
                 {
-                    Trace.TraceWarning(((object)ex).ToString());
+                    Trace.TraceWarning(ex.ToString());
                 }
             }
         }

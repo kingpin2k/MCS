@@ -18,7 +18,7 @@
         <Style x:Key="DropTargetStyle" TargetType="{x:Type sm:QuickLinkTargetImage}">
             <Setter Property="FrameworkElement.Margin" Value="4,0,4,0" />
             <Setter Property="UIElement.AllowDrop" Value="True" />
-            <Setter Property="Image.Source" Value="pack://application:,,,/Images/DropTarget.png" />
+            <Setter Property="Image.Source" Value="../Images/DropTarget.png" />
             <Setter Property="UIElement.Visibility" Value="{Binding ElementName=m_strip, Path=DropTargetVisibility}" />
             <Setter Property="ui:DragDrop.AllowEnhancedDrop" Value="True" />
             <Setter Property="ui:DragDrop.DragMouseButton" Value="Left" />

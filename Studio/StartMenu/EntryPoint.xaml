@@ -14,7 +14,7 @@
                     <Setter Property="Image.Source" Value="{Binding Path=Image}" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path=Image}" Value="{x:Null}">
-                            <Setter Property="Image.Source" Value="pack://application:,,,/Images/error.png" />
+                            <Setter Property="Image.Source" Value="../Images/error.png" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

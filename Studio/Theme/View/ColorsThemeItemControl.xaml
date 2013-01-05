@@ -4,6 +4,7 @@
              xmlns:ntb="clr-namespace:Advent.Common.UI;assembly=Advent.Common"
              xmlns:model="clr-namespace:Advent.VmcStudio.Theme.Model"
              >
+
     <UserControl.Resources>
         <DataTemplate x:Key="{DataTemplateKey {x:Type model:ColorItemModel}}" DataType="{x:Type model:ColorItemModel}">
             <Grid Margin="4">
@@ -70,7 +71,7 @@
                 </StackPanel>
                 <Border Grid.Row="1" Margin="8" CornerRadius="8">
                     <Border.Background>
-                        <ImageBrush ImageSource="pack://application:,,,/Images/Checkerboard.png" TileMode="Tile" Viewport="0,0,32,32" ViewportUnits="Absolute" />
+                        <ImageBrush ImageSource="../../Images/Checkerboard.png" TileMode="Tile" Viewport="0,0,32,32" ViewportUnits="Absolute" />
                     </Border.Background>
                     <Border CornerRadius="8" BorderThickness="2" BorderBrush="#FF000000">
                         <Border.Background>
