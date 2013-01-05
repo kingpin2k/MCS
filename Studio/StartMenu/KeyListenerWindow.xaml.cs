@@ -11,12 +11,6 @@ namespace Advent.VmcStudio.StartMenu
 {
     public partial class KeyListenerWindow : Window, IComponentConnector
     {
-        // Fields
-        /*
-        private bool _contentLoaded;
-        internal Grid m_grid;
-        internal TextBlock m_text;
-         * */
 
         private GlobalHook hook;
 
@@ -46,6 +40,7 @@ namespace Advent.VmcStudio.StartMenu
             this.hook = new GlobalHook(false, true);
             this.hook.KeyDown += new KeyEventHandler(this.hook_KeyDown);
         }
+
 
         // Properties
         public Keys Key { get; private set; }

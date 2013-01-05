@@ -289,7 +289,7 @@ namespace Advent.VmcExecute
             this.OnExecutionStarted();
             try
             {
-                if (this.execInfo.MinimiseMediaCenter)
+                if (this.execInfo.MinimizeMediaCenter)
                 {
                     IntPtr window = Advent.VmcExecute.NativeMethods.FindWindow("eHome Render Window", (string)null);
                     if (window != IntPtr.Zero)

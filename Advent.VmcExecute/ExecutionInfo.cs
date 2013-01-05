@@ -23,7 +23,7 @@ namespace Advent.VmcExecute
 
         [XmlAttribute]
         [DefaultValue(true)]
-        public bool MinimiseMediaCenter { get; set; }
+        public bool MinimizeMediaCenter { get; set; }
 
         [DefaultValue(false)]
         [XmlAttribute]
@@ -35,7 +35,7 @@ namespace Advent.VmcExecute
 
         public ExecutionInfo()
         {
-            this.MinimiseMediaCenter = true;
+            this.MinimizeMediaCenter = true;
         }
     }
 }

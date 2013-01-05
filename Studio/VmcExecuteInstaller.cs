@@ -18,11 +18,12 @@ namespace Advent.VmcStudio
             get
             {
                 string directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                yield return Path.Combine(directoryName, "Microsoft.DirectX.dll");
-                yield return Path.Combine(directoryName, "Microsoft.DirectX.DirectDraw.dll");
-                yield return Path.Combine(directoryName, "ICSharpCode.SharpZipLib.dll");
-                yield return Path.Combine(directoryName, "Advent.Common.dll");
-                yield return Path.Combine(directoryName, "Advent.VmcExecute.dll");
+                //Give me a good reason to put any of these into the GAC...
+                //yield return Path.Combine(directoryName, "Microsoft.DirectX.dll");
+                //yield return Path.Combine(directoryName, "Microsoft.DirectX.DirectDraw.dll");
+                //yield return Path.Combine(directoryName, "ICSharpCode.SharpZipLib.dll");
+                //yield return Path.Combine(directoryName, "Advent.Common.dll");
+                //yield return Path.Combine(directoryName, "Advent.VmcExecute.dll");
                 yield break;
             }
         }

@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using Advent.Common.Interop;
 
 namespace Advent.Common.UI
 {
@@ -21,8 +22,8 @@ namespace Advent.Common.UI
 
     public class GlobalHook
     {
-        private static Advent.Common.Interop.NativeMethods.HookProc mouseHookProcedure;
-        private static Advent.Common.Interop.NativeMethods.HookProc keyboardHookProcedure;
+        private static NativeMethods.HookProc mouseHookProcedure;
+        private static NativeMethods.HookProc keyboardHookProcedure;
         private int keyboardHookHandle;
         private int mouseHookHandle;
         private GlobalHook.MouseHookEventHandler mouseActivity;
@@ -157,8 +158,9 @@ namespace Advent.Common.UI
         {
             if (this.mouseHookHandle == 0 && installMouseHook)
             {
-                GlobalHook.mouseHookProcedure = new Advent.Common.Interop.NativeMethods.HookProc(this.MouseHookProc);
-                this.mouseHookHandle = Advent.Common.Interop.NativeMethods.SetWindowsHookEx(14, GlobalHook.mouseHookProcedure, Marshal.GetHINSTANCE(Assembly.GetExecutingAssembly().GetModules()[0]), 0);
+                GlobalHook.mouseHookProcedure = new NativeMethods.HookProc(this.MouseHookProc);
+                // In .net 4 we send in IntPtr.Zero for the hMod parameter
+                this.mouseHookHandle = NativeMethods.SetWindowsHookEx(NativeMethods.WH_MOUSE_LL, GlobalHook.mouseHookProcedure, IntPtr.Zero, 0);
                 if (this.mouseHookHandle == 0)
                 {
                     int lastWin32Error = Marshal.GetLastWin32Error();
@@ -166,15 +168,19 @@ namespace Advent.Common.UI
                     throw new Win32Exception(lastWin32Error);
                 }
             }
-            if (this.keyboardHookHandle != 0 || !installKeyboardHook)
-                return;
-            GlobalHook.keyboardHookProcedure = new Advent.Common.Interop.NativeMethods.HookProc(this.KeyboardHookProc);
-            this.keyboardHookHandle = Advent.Common.Interop.NativeMethods.SetWindowsHookEx(13, GlobalHook.keyboardHookProcedure, Marshal.GetHINSTANCE(Assembly.GetExecutingAssembly().GetModules()[0]), 0);
-            if (this.keyboardHookHandle != 0)
-                return;
-            int lastWin32Error1 = Marshal.GetLastWin32Error();
-            this.Stop(false, true, false);
-            throw new Win32Exception(lastWin32Error1);
+
+            if (this.keyboardHookHandle == 0 && installKeyboardHook)
+            {
+                GlobalHook.keyboardHookProcedure = new NativeMethods.HookProc(this.KeyboardHookProc);
+                // In .net 4 we send in IntPtr.Zero for the hMod parameter
+                this.keyboardHookHandle = NativeMethods.SetWindowsHookEx(NativeMethods.WH_KEYBOARD_LL, GlobalHook.keyboardHookProcedure, IntPtr.Zero, 0);
+                if (this.keyboardHookHandle == 0)
+                {
+                    int lastWin32Error2 = Marshal.GetLastWin32Error();
+                    this.Stop(false, true, false);
+                    throw new Win32Exception(lastWin32Error2);
+                }
+            }
         }
 
         public void Stop()
@@ -186,17 +192,24 @@ namespace Advent.Common.UI
         {
             if (this.mouseHookHandle != 0 && uninstallMouseHook)
             {
-                int num = Advent.Common.Interop.NativeMethods.UnhookWindowsHookEx(this.mouseHookHandle);
+                int num = NativeMethods.UnhookWindowsHookEx(this.mouseHookHandle);
                 this.mouseHookHandle = 0;
                 if (num == 0 && throwExceptions)
-                    throw new Win32Exception(Marshal.GetLastWin32Error());
+                {
+                    int lastWin32Error = Marshal.GetLastWin32Error();
+                    throw new Win32Exception(lastWin32Error);
+                }
             }
-            if (this.keyboardHookHandle == 0 || !uninstallKeyboardHook)
-                return;
-            int num1 = Advent.Common.Interop.NativeMethods.UnhookWindowsHookEx(this.keyboardHookHandle);
-            this.keyboardHookHandle = 0;
-            if (num1 == 0 && throwExceptions)
-                throw new Win32Exception(Marshal.GetLastWin32Error());
+            if (this.keyboardHookHandle != 0 && uninstallKeyboardHook)
+            {
+                int num2 = NativeMethods.UnhookWindowsHookEx(this.keyboardHookHandle);
+                this.keyboardHookHandle = 0;
+                if (num2 == 0 && throwExceptions)
+                {
+                    int lastWin32Error2 = Marshal.GetLastWin32Error();
+                    throw new Win32Exception(lastWin32Error2);
+                }
+            }
         }
 
         private int MouseHookProc(int code, int wparam, IntPtr lparam)
@@ -209,24 +222,24 @@ namespace Advent.Common.UI
                 short num = (short)0;
                 switch (wparam)
                 {
-                    case 513:
+                    case NativeMethods.WM_LBUTTONDOWN:
                         buttons = MouseButtons.Left;
                         break;
-                    case 516:
+                    case NativeMethods.WM_RBUTTONDOWN:
                         buttons = MouseButtons.Right;
                         break;
-                    case 522:
+                    case NativeMethods.WM_MOUSEWHEEL:
                         num = (short)(mouseLlHookStruct.mouseData >> 16 & (int)ushort.MaxValue);
                         break;
                 }
                 int clicks = 0;
                 if (buttons != MouseButtons.None)
-                    clicks = wparam == 515 || wparam == 518 ? 2 : 1;
+                    clicks = wparam == NativeMethods.WM_LBUTTONDBLCLK || wparam == NativeMethods.WM_RBUTTONDBLCLK ? 2 : 1;
                 args = new MouseHookEventArgs(buttons, clicks, mouseLlHookStruct.pt.X, mouseLlHookStruct.pt.Y, (int)num);
                 this.mouseActivity((object)this, args);
             }
             if (args == null || !args.Handled)
-                return Advent.Common.Interop.NativeMethods.CallNextHookEx(this.mouseHookHandle, code, wparam, lparam);
+                return NativeMethods.CallNextHookEx(this.mouseHookHandle, code, wparam, lparam);
             else
                 return 1;
         }
@@ -245,12 +258,12 @@ namespace Advent.Common.UI
                 }
                 if (this.keyPress != null && wparam == 256)
                 {
-                    bool flag2 = ((int)Advent.Common.Interop.NativeMethods.GetKeyState(16) & 128) == 128;
-                    bool flag3 = (int)Advent.Common.Interop.NativeMethods.GetKeyState(20) != 0;
+                    bool flag2 = ((int)NativeMethods.GetKeyState(16) & 128) == 128;
+                    bool flag3 = (int)NativeMethods.GetKeyState(20) != 0;
                     byte[] numArray = new byte[256];
-                    Advent.Common.Interop.NativeMethods.GetKeyboardState(numArray);
+                    NativeMethods.GetKeyboardState(numArray);
                     byte[] lpwTransKey = new byte[2];
-                    if (Advent.Common.Interop.NativeMethods.ToAscii(keyboardHookStruct.vkCode, keyboardHookStruct.scanCode, numArray, lpwTransKey, keyboardHookStruct.flags) == 1)
+                    if (NativeMethods.ToAscii(keyboardHookStruct.vkCode, keyboardHookStruct.scanCode, numArray, lpwTransKey, keyboardHookStruct.flags) == 1)
                     {
                         char ch = (char)lpwTransKey[0];
                         if (flag3 ^ flag2 && char.IsLetter(ch))
@@ -268,7 +281,7 @@ namespace Advent.Common.UI
                 }
             }
             if (!flag1)
-                return Advent.Common.Interop.NativeMethods.CallNextHookEx(this.keyboardHookHandle, code, wparam, lparam);
+                return NativeMethods.CallNextHookEx(this.keyboardHookHandle, code, wparam, lparam);
             else
                 return 1;
         }

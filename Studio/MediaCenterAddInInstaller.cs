@@ -30,6 +30,7 @@ namespace Advent.VmcStudio
             {
                 AssemblyName assemblyName1 = AssemblyName.GetAssemblyName(str);
                 bool flag = true;
+                
                 foreach (AssemblyName assemblyName2 in Enumerable.Select<string, AssemblyName>(AssemblyCache.Global.SearchAssemblies(assemblyName1.Name), (Func<string, AssemblyName>)(o => new AssemblyName(o))))
                 {
                     if (assemblyName2.Version == assemblyName1.Version)
@@ -51,22 +52,21 @@ namespace Advent.VmcStudio
             }
             if (list.Count <= 0)
                 return;
+            char[] splitter = { ',' };
             foreach (AssemblyName assemblyName in list)
             {
                 foreach (EntryPoint entryPoint in Enumerable.Where<EntryPoint>((IEnumerable<EntryPoint>)this.StartMenuManager.OemManager.EntryPoints, (Func<EntryPoint, bool>)(o => o.AddIn != null)))
                 {
                     try
                     {
-                        string[] strArray = entryPoint.AddIn.Split(new char[1]
-            {
-              ','
-            });
+                        string[] strArray = entryPoint.AddIn.Split(splitter);
+
                         if (strArray.Length > 3)
                         {
                             if (strArray[1].Trim() == assemblyName.Name)
                             {
-                                string oldValue = Enumerable.First<string>((IEnumerable<string>)strArray, (Func<string, bool>)(o => o.Trim().StartsWith("Version="))).Trim();
-                                entryPoint.AddIn = entryPoint.AddIn.Replace(oldValue, "Version=" + (object)assemblyName.Version);
+                                string oldValue = strArray.First(s => s.StartsWith("Version=")).Trim();
+                                entryPoint.AddIn = entryPoint.AddIn.Replace(oldValue, "Version=" + assemblyName.Version);
                             }
                         }
                     }

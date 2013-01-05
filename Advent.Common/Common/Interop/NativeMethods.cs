@@ -186,7 +186,7 @@ namespace Advent.Common.Interop
         public const int DV_E_DVASPECT = -2147221397;
         public const TYMED TYMED_ANY = TYMED.TYMED_HGLOBAL | TYMED.TYMED_FILE | TYMED.TYMED_ISTREAM | TYMED.TYMED_ISTORAGE | TYMED.TYMED_GDI | TYMED.TYMED_MFPICT | TYMED.TYMED_ENHMF;
 
-        [DllImport("kernel32", SetLastError = true)]
+        [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool CloseHandle(IntPtr handle);
 
         [DllImport("crypt32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -265,7 +265,7 @@ namespace Advent.Common.Interop
         [DllImport("kernel32.dll")]
         internal static extern IntPtr FindResourceEx(IntPtr hModule, int lpType, int lpName, ushort wLanguage);
 
-        [DllImport("kernel32", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
+        [DllImport("kernel32.dll", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         internal static extern IntPtr LockResource(IntPtr h);
 
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -274,22 +274,22 @@ namespace Advent.Common.Interop
         [DllImport("kernel32.dll", SetLastError = true)]
         internal static extern IntPtr LoadResource(IntPtr hModule, IntPtr hResInfo);
 
-        [DllImport("kernel32", CharSet = CharSet.Unicode)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         internal static extern IntPtr BeginUpdateResource(string pFileName, bool bDeleteExistingResources);
 
-        [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern bool UpdateResource(IntPtr hUpdate, string lpType, string lpName, ushort wLanguage, byte[] lpData, int cbData);
 
-        [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern bool UpdateResource(IntPtr hUpdate, int lpType, string lpName, ushort wLanguage, byte[] lpData, int cbData);
 
-        [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern bool UpdateResource(IntPtr hUpdate, string lpType, int lpName, ushort wLanguage, byte[] lpData, int cbData);
 
-        [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern bool UpdateResource(IntPtr hUpdate, int lpType, int lpName, ushort wLanguage, byte[] lpData, int cbData);
 
-        [DllImport("kernel32", SetLastError = true)]
+        [DllImport("kernel32.dll", SetLastError = true)]
         internal static extern bool EndUpdateResource(IntPtr hUpdate, bool fDiscard);
 
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -356,19 +356,19 @@ namespace Advent.Common.Interop
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetClientRect(IntPtr hWnd, out Advent.Common.Interop.RECT lpRect);
 
-        [DllImport("gdi32")]
+        [DllImport("gdi32.dll")]
         public static extern IntPtr CreateCompatibleDC(IntPtr hDC);
 
-        [DllImport("gdi32")]
+        [DllImport("gdi32.dll")]
         public static extern IntPtr CreateCompatibleBitmap(IntPtr hDC, int nWidth, int nHeight);
 
-        [DllImport("gdi32")]
+        [DllImport("gdi32.dll")]
         public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
 
-        [DllImport("gdi32")]
+        [DllImport("gdi32.dll")]
         public static extern bool BitBlt(IntPtr hDestDC, int X, int Y, int nWidth, int nHeight, IntPtr hSrcDC, int SrcX, int SrcY, CopyPixelOperation Rop);
 
-        [DllImport("gdi32")]
+        [DllImport("gdi32.dll")]
         public static extern IntPtr DeleteDC(IntPtr hDC);
 
         [DllImport("user32.dll")]
@@ -389,7 +389,7 @@ namespace Advent.Common.Interop
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
 
-        [DllImport("user32")]
+        [DllImport("user32.dll")]
         public static extern int ReleaseCapture(IntPtr hwnd);
 
         [DllImport("shell32.dll", CharSet = CharSet.Unicode, PreserveSig = false)]
@@ -425,10 +425,10 @@ namespace Advent.Common.Interop
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern int CallNextHookEx(int idHook, int nCode, int wParam, IntPtr lParam);
 
-        [DllImport("user32")]
+        [DllImport("user32.dll")]
         public static extern int ToAscii(int uVirtKey, int uScanCode, byte[] lpbKeyState, byte[] lpwTransKey, int fuState);
 
-        [DllImport("user32")]
+        [DllImport("user32.dll")]
         public static extern int GetKeyboardState(byte[] pbKeyState);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
